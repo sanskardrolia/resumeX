@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .preview, #resume-preview {
+    overflow-x: auto;
+  }
+  
+  #resume-preview {
+    background: white;
+    min-height: 842px; /* A4 height */
+    width: 595px; /* A4 width */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  @media (max-width: 1024px) {
+    .container {
+      flex-direction: column;
+    }
+    #resume-preview {
+      width: 100%;
+      min-height: auto;
+    }
+  }
+  
+  button {
+    transition: background-color 0.3s;
+  }
+  
+  input, textarea {
+    transition: border-color 0.3s;
+  }
+  
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+  }
