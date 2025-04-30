@@ -261,4 +261,4 @@ MIT License
 
 ---
 
-Built with 💻 by [Your Name]. Star ⭐ the repo if you find it useful!
+Built with 💻 by Sanskar. Star ⭐ the repo if you find it useful!
