@@ -1,29 +1,37 @@
-Resume Builder - ATS-Friendly with Enhanced PDF
-A web-based resume builder that creates ATS-friendly resumes with real-time preview, PDF download using the pdf-lib library, and a "Fill Sample Data" feature for quick testing. The PDF output features 30% larger font sizes, additional spacing between entries, and darkened designation text for improved readability.
-Features
+# Resume Builder 📄
 
-Resume Sections: Create and edit resumes with sections for Personal Details, Professional Summary, Skills, Work Experience, Extracurricular Activities, Education, Personal Projects, and Hobbies.
-Real-Time Preview: View resume updates instantly as you edit the form.
-PDF Download: Generate a downloadable PDF using pdf-lib with enhanced readability:
-Font sizes increased by 30% (e.g., name: 20.8, section titles: 15.6, body text: 13).
-Extra spacing (8 points) between entries in Work Experience, Education, Extracurricular Activities, and Personal Projects.
-Darkened designation text in Work Experience for better visibility.
+A modern, ATS-friendly resume builder with real-time preview, PDF export powered by `pdf-lib`, and a "Fill Sample Data" feature for quick testing. The PDF output is enhanced with **30% larger fonts**, **spaced entries**, and **darkened designations** for optimal readability.
 
+---
 
-Fill Sample Data: Automatically populate the form with professional, ATS-friendly sample data for testing.
-Responsive Design: Works seamlessly on mobile and desktop devices.
-ATS-Friendly: Clean, structured layout with standard Helvetica fonts for compatibility with Applicant Tracking Systems.
-Dynamic Entries: Add multiple entries for Work Experience, Extracurricular Activities, Education, and Personal Projects with "Add" buttons.
-Word Count Limit: Professional Summary capped at 30 words with a live counter.
+## ✨ Features
 
-Tech Stack
+- **Comprehensive Resume Sections**: Edit Personal Details, Professional Summary, Skills, Work Experience, Extracurricular Activities, Education, Personal Projects, and Hobbies.
+- **Real-Time Preview**: See your resume update instantly as you type.
+- **Enhanced PDF Export**:
+  - Font sizes increased by 30% (Name: 20.8pt, Titles: 15.6pt, Body: 13pt).
+  - 8pt spacing between entries in Work Experience, Education, Extracurricular Activities, and Projects.
+  - Darkened designations in Work Experience for better visibility.
+- **Fill Sample Data**: Auto-populate the form with professional, ATS-friendly sample data.
+- **Responsive Design**: Seamless experience on mobile and desktop.
+- **ATS-Friendly**: Clean layout with standard Helvetica fonts for Applicant Tracking Systems.
+- **Dynamic Entries**: Add multiple entries with intuitive "Add" buttons.
+- **Word Count Limit**: Professional Summary capped at 30 words with a live counter.
 
-Frontend: HTML, CSS (Tailwind CSS), Vanilla JavaScript, pdf-lib
-Backend: Node.js, Express.js
-Deployment: Vercel (optional, for hosting)
-Version Control: Git, GitHub
+---
 
-Project Structure
+## 🛠 Tech Stack
+
+- **Frontend**: HTML, CSS (Tailwind CSS), Vanilla JavaScript, `pdf-lib`
+- **Backend**: Node.js, Express.js
+- **Deployment**: Vercel
+- **Version Control**: Git, GitHub
+
+---
+
+## 📂 Project Structure
+
+```plaintext
 resume-builder/
 ├── server/
 │   ├── package.json
@@ -34,75 +42,82 @@ resume-builder/
 │   ├── script.js
 │   ├── pdf-lib.min.js
 ├── README.md
-├── vercel.json (optional, for Vercel deployment)
+├── vercel.json (optional)
+```
 
-Setup Instructions (Local)
+---
 
-Clone the Repository:
-git clone https://github.com/your-username/resume-builder.git
-cd resume-builder
+## 🚀 Getting Started (Local Setup)
 
+### Prerequisites
+- Node.js (v16+)
+- Git
+- A modern web browser
 
-Install Backend Dependencies:
-cd server
-npm install
+### Installation
 
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/resume-builder.git
+   cd resume-builder
+   ```
 
-Download pdf-lib.min.js:
+2. **Install Backend Dependencies**:
+   ```bash
+   cd server
+   npm install
+   ```
 
-Place the pdf-lib library in the public folder:cd ../public
-curl -o pdf-lib.min.js https://unpkg.com/pdf-lib/dist/pdf-lib.min.js
+3. **Download `pdf-lib.min.js`**:
+   ```bash
+   cd ../public
+   curl -o pdf-lib.min.js https://unpkg.com/pdf-lib/dist/pdf-lib.min.js
+   ```
 
+4. **Start the Server**:
+   ```bash
+   cd ../server
+   npm start
+   ```
 
-Verify pdf-lib.min.js is in public/.
+5. **Access the App**:
+   - Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+---
 
-Start the Server:
-cd ../server
-npm start
+## ☁️ Deploying to Vercel
 
+Host your resume builder on Vercel with automatic deployments from GitHub.
 
-Access the Application:
+### Step 1: Push to GitHub
+1. Initialize Git (if not already done):
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/your-username/resume-builder.git
+   git push -u origin main
+   ```
 
-Open http://localhost:3000 in your browser.
+2. Create a GitHub repository at [github.com/new](https://github.com/new) and push your code.
 
+### Step 2: Deploy to Vercel
+1. Log in to [Vercel](https://vercel.com) and click **New Project** > **Import Git Repository**.
+2. Select your `resume-builder` repository.
+3. Configure settings:
+   - **Framework Preset**: Other
+   - **Root Directory**: `resume-builder/`
+   - **Build Command**: Leave blank
+   - **Output Directory**: Leave blank
+   - **Install Command**: `npm install`
+   - **Development Command**: `npm start`
+4. Click **Deploy**.
 
-
-Deployment on Vercel
-To host the resume builder on Vercel with automatic deployments from GitHub:
-
-Push to GitHub:
-
-Initialize a Git repository if not already done:git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/your-username/resume-builder.git
-git push -u origin main
-
-
-
-
-Import to Vercel:
-
-Log in to Vercel and click New Project > Import Git Repository.
-Select your resume-builder repository and grant Vercel access to GitHub if prompted.
-
-
-Configure Vercel Settings:
-
-Framework Preset: Select Other.
-Root Directory: Set to the root (resume-builder/) or adjust if needed.
-Build Command: Leave blank (no build step required).
-Output Directory: Leave blank.
-Install Command: Leave as default (npm install).
-Development Command: Set to npm start.
-Click Deploy.
-
-
-Add vercel.json (Optional):
-
-Create resume-builder/vercel.json to ensure Vercel serves the Node.js/Express app:{
+### Step 3: Add `vercel.json` (Recommended)
+Create `resume-builder/vercel.json`:
+```json
+{
   "version": 2,
   "builds": [
     {
@@ -117,110 +132,133 @@ Create resume-builder/vercel.json to ensure Vercel serves the Node.js/Express ap
     }
   ]
 }
+```
 
-
-Commit and push:git add vercel.json
-git commit -m "Add vercel.json for deployment"
+Commit and push:
+```bash
+git add vercel.json
+git commit -m "Add vercel.json for Vercel deployment"
 git push origin main
+```
 
+### Step 4: Access Your App
+- Vercel provides a live URL (e.g., `https://resume-builder-abc123.vercel.app`).
+- Push changes to `main` for automatic redeployments.
 
+---
 
+## 🎮 Usage
 
-Access Live URL:
+1. **Edit Resume**:
+   - Fill the form manually or click **Fill Sample Data** for pre-filled professional data.
+2. **Preview**:
+   - View real-time updates in the left pane.
+3. **Download PDF**:
+   - Click **Download PDF** to save your resume with enhanced fonts, spacing, and designations.
+4. **Add Entries**:
+   - Use **Add** buttons for multiple Work Experience, Extracurricular Activities, Education, or Projects.
+5. **Word Count**:
+   - Keep Professional Summary under 30 words (live counter).
 
-After deployment, Vercel provides a URL (e.g., https://resume-builder-abc123.vercel.app).
-Test the application at this URL.
+---
 
+## 🔧 Customizing Font Sizes
 
-Automatic Redeployments:
+Adjust PDF font sizes for a personalized look:
 
-Push changes to the main branch to trigger automatic redeployments.
+1. Open `public/script.js` in a text editor.
+2. Find the `downloadBtn.addEventListener('click', ...)` section.
+3. Modify `drawText` font sizes:
+   ```javascript
+   drawText(data.name, font, 22, true); // Name (default: 20.8)
+   drawText('Skills', font, 16, true); // Section titles (default: 15.6)
+   drawText(data.hardSkills, font, 14); // Body text (default: 13)
+   ```
+4. Update `lineHeight` to match body text size (e.g., `1.3 * body_font_size`):
+   ```javascript
+   const lineHeight = 18.2; // Adjust (e.g., 18.2 for body text 14)
+   ```
+5. Save, commit, and push:
+   ```bash
+   git add public/script.js
+   git commit -m "Update PDF font sizes"
+   git push origin main
+   ```
+6. Test the PDF output locally or on Vercel.
 
+---
 
+## 🐛 Troubleshooting
 
-Usage
+- **PDF Download Fails**:
+  - Ensure `pdf-lib.min.js` is in `public/`.
+  - Check console for errors (`Ctrl+Shift+J` in browser).
+  - Verify `<script src="pdf-lib.min.js"></script>` in `index.html`.
+- **PDF Content Cut Off**:
+  - Reduce font sizes or content in `script.js`.
+  - Add multi-page support:
+    ```javascript
+    if (yPosition < margin) {
+        page = pdfDoc.addPage([595, 842]);
+        yPosition = height - margin;
+    }
+    ```
+- **Text Overlap**:
+  - Increase `lineHeight` in `script.js` (e.g., `18.2` to `20`).
+- **Vercel Deployment Fails**:
+  - Check Vercel logs in the Dashboard.
+  - Ensure `package.json` includes:
+    ```json
+    "dependencies": {
+      "express": "^4.18.2",
+      "cors": "^2.8.5"
+    }
+    ```
+  - Verify `vercel.json` routes to `server/server.js`.
+- **CORS Issues**:
+  - Serve `pdf-lib.min.js` locally in `public/`.
+- **Sample Data Not Filling**:
+  - Check `fill-sample` event listener in `script.js`.
+- **Blank PDF**:
+  - Use **Fill Sample Data** and retry.
+  - Debug `data` object in `script.js`.
 
-Edit Resume: Fill in the form on the right manually or click Fill Sample Data to populate with professional sample data.
-Preview: See real-time updates in the preview pane on the left.
-Download PDF: Click Download PDF to generate and save the resume as a PDF with enhanced font sizes, spacing, and darkened designations.
-Add Entries: Use the Add buttons to include multiple Work Experience, Extracurricular Activities, Education, or Personal Project entries.
-Word Count: Ensure the Professional Summary stays within 30 words (live counter provided).
+---
 
-Customizing Font Sizes
-To adjust PDF font sizes:
+## 🌟 Notes
 
-Open public/script.js.
-Locate the downloadBtn.addEventListener('click', ...) section.
-Modify font sizes in drawText calls:
-Name: drawText(data.name, font, 20.8, true); (e.g., change 20.8 to 22).
-Section Titles: drawText('Skills', font, 15.6, true); (e.g., change 15.6 to 16).
-Body Text: drawText(data.hardSkills, font, 13); (e.g., change 13 to 14).
+- **ATS Compatibility**: Uses Helvetica and a clean layout for ATS parsing.
+- **Single-Page PDF**: Fits sample data in one A4 page. Add multi-page support for longer resumes.
+- **Enhanced PDF**: 30% larger fonts, 8pt entry spacing, and bold black designations.
+- **Vercel**: Automatic deployments on Git pushes. Use Vercel CLI (`npm i -g vercel`) for local deployments.
+- **Performance**: Fast PDF generation with `pdf-lib` and scalable hosting on Vercel.
+- **Custom Domains**: Configure in Vercel Dashboard > Settings > Domains.
 
+---
 
-Adjust lineHeight (currently 18.2) to match body text size (e.g., 1.3 * body_font_size).
-Save, commit, and push changes:git add public/script.js
-git commit -m "Update PDF font sizes"
-git push origin main
+## 🤝 Contributing
 
+1. Fork the repository.
+2. Create a feature branch:
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+3. Commit changes:
+   ```bash
+   git commit -m "Add your feature"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/your-feature
+   ```
+5. Open a Pull Request on GitHub.
 
-Test the PDF output locally or on Vercel.
+---
 
-Troubleshooting
+## 📜 License
 
-PDF Download Fails:
-Ensure pdf-lib.min.js is in public/.
-Check browser console for errors (e.g., "PDFLib is not defined").
-Verify index.html includes <script src="pdf-lib.min.js"></script>.
-
-
-PDF Content Cut Off:
-Reduce font sizes or content length in script.js.
-Add multi-page support by modifying drawText to create new pages when yPosition < margin (see script.js comments).
-
-
-Text Overlap:
-Increase lineHeight in script.js (e.g., from 18.2 to 20).
-Adjust font sizes to balance readability and page fit.
-
-
-Vercel Deployment Fails:
-Check Vercel logs in the Dashboard for dependency or runtime errors.
-Ensure server/package.json includes all dependencies (express, cors).
-Verify vercel.json routes requests to server/server.js.
-
-
-CORS Issues:
-Serve pdf-lib.min.js locally from public/ to avoid CORS errors.
-
-
-Sample Data Not Filling:
-Check the fill-sample button event listener in script.js.
-Inspect console for JavaScript errors.
-
-
-Blank PDF:
-Use Fill Sample Data to populate the form, then download.
-Log the data object in script.js to debug missing fields.
-
-
-
-Notes
-
-ATS Compatibility: The PDF uses standard Helvetica fonts and a clean layout, ensuring compatibility with Applicant Tracking Systems.
-Single-Page PDF: The current implementation generates a single A4 page. For multi-page support, modify script.js to add new pages when yPosition nears the page bottom.
-Font Enhancements: Font sizes are 30% larger (name: 20.8, titles: 15.6, body: 13), with lineHeight of 18.2 and 8-point spacing between entries for readability.
-Darkened Designations: Work Experience designations are bold and black (rgb(0, 0, 0)) for visibility.
-Vercel Hosting: Deployments are automatic on GitHub pushes. Use Vercel CLI (npm i -g vercel) for local deployments if preferred.
-Performance: pdf-lib generates PDFs quickly, and Vercel’s scaling ensures fast load times.
-Custom Domains: Add a custom domain in Vercel’s Dashboard (Project > Settings > Domains).
-
-Contributing
-
-Fork the repository.
-Create a feature branch (git checkout -b feature/your-feature).
-Commit changes (git commit -m "Add your feature").
-Push to the branch (git push origin feature/your-feature).
-Open a Pull Request on GitHub.
-
-License
 MIT License
+
+---
+
+Built with 💻 by [Your Name]. Star ⭐ the repo if you find it useful!
