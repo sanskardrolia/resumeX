@@ -1,326 +1,544 @@
+/* Homepage Styles (Vanilla CSS) */
 body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+.nav {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.nav-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: #0056b3;
+}
+
+.hero {
+  padding: 100px 20px 60px;
+  background-color: #e9ecef;
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.hero-cta {
+  background-color: #28a745;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+.hero-cta:hover {
+  background-color: #218838;
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.features {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.features-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.features-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #222;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.feature-item {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.feature-item p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+}
+
+.footer {
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Responsive Design for Homepage */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 28px;
+  }
+  .hero-subtitle {
+    font-size: 16px;
+  }
+  .hero-cta {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+  .hero-image {
+    max-width: 100%;
+  }
+  .features-title {
+    font-size: 28px;
+  }
+  .feature-item h3 {
+    font-size: 18px;
+  }
+  .feature-item p {
+    font-size: 14px;
+  }
+}
+
+/* Resume Builder Styles (Preserved, Tailwind CSS) */
+body.builder {
   font-family: Arial, sans-serif;
   background-color: #f3f4f6; /* Light mode: gray-100 */
   color: #1f2937; /* Light mode: gray-900 */
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Dark Mode */
-body.dark-mode {
+body.builder.dark-mode {
   background-color: #1f2937; /* Dark mode: gray-800 */
   color: #e5e7eb; /* Dark mode: gray-200 */
 }
 
-/* Container for Editor and Preview */
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  min-height: calc(100vh - 2rem); /* Ensure full viewport height minus padding */
+/* Navigation */
+body.builder nav {
+  background-color: #ffffff; /* Light mode: white */
+  transition: background-color 0.3s;
 }
 
-@media (min-width: 1025px) {
-  .container {
-    flex-direction: row;
-    align-items: stretch; /* Ensure children stretch to equal height */
-  }
+body.builder.dark-mode nav {
+  background-color: #374151; /* Dark mode: gray-700 */
+}
+
+body.builder nav h1 {
+  color: #1f2937; /* Light mode: gray-900 */
+}
+
+body.builder.dark-mode nav h1 {
+  color: #e5e7eb; /* Dark mode: gray-200 */
 }
 
 /* Toast Message */
-#toast {
+body.builder #toast {
   max-width: 300px;
 }
 
-#toast.show {
+body.builder #toast.show {
   opacity: 1;
 }
 
-body.dark-mode #toast {
+body.builder.dark-mode #toast {
   background-color: #3b82f6; /* Dark mode: blue-500 */
 }
 
-/* Preview Section */
-.preview {
-  overflow: hidden; /* Disable scrolling */
-  background-color: #ffffff; /* Always white for consistency with PDF */
+/* Resume Builder Styles */
+body.builder .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: calc(100vh - 2rem);
+}
+
+@media (min-width: 1025px) {
+  body.builder .container {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+body.builder .preview {
+  overflow: hidden;
+  background-color: #ffffff;
   transition: none;
   display: flex;
   flex-direction: column;
 }
 
-body.dark-mode .preview {
-  background-color: #ffffff; /* Ensure preview remains white in dark mode */
+body.builder.dark-mode .preview {
+  background-color: #ffffff;
 }
 
 @media (min-width: 1025px) {
-  .preview {
-    flex: 1; /* Equal height with editor */
-    min-height: 914px; /* A4 height (842px) + padding (2 * 24px) + shadow */
+  body.builder .preview {
+    flex: 1;
+    min-height: 914px;
   }
 }
 
-/* Ensure A4 preview is non-scrollable and fits viewport */
-#resume-preview {
+body.builder #resume-preview {
   overflow: hidden;
-  background: #ffffff !important; /* Always white for resume paper effect */
-  color: #000000 !important; /* Always black text */
-  min-height: 842px; /* A4 height */
-  width: 595px; /* A4 width */
+  background: #ffffff !important;
+  color: #000000 !important;
+  min-height: 842px;
+  width: 595px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Font size classes for preview */
-#resume-preview.font-small {
-  font-size: 0.8em; /* 80% of base */
-}
-#resume-preview.font-medium {
-  font-size: 1em; /* 100% of base */
-}
-#resume-preview.font-large {
-  font-size: 1.2em; /* 120% of base */
-}
+body.builder #resume-preview.font-small { font-size: 0.8em; }
+body.builder #resume-preview.font-medium { font-size: 1em; }
+body.builder #resume-preview.font-large { font-size: 1.2em; }
 
 @media (max-width: 1024px) {
-  #resume-preview {
-    width: 100%; /* Full width on mobile */
-    min-height: 842px; /* Maintain A4 height */
+  body.builder .preview {
+    width: 100%;
+    min-height: 842px;
+    box-sizing: border-box;
+  }
+  body.builder #resume-preview {
+    width: 100%;
+    min-height: 842px;
     box-sizing: border-box;
   }
 }
 
-/* Editor Section */
-.editor {
-  overflow-y: auto; /* Enable vertical scrolling */
-  background-color: #ffffff; /* Light mode: white */
-  color: #1f2937; /* Light mode: gray-900 */
+body.builder .editor {
+  overflow-y: auto;
+  background-color: #ffffff;
+  color: #1f2937;
   transition: background-color 0.3s, color 0.3s;
 }
 
-body.dark-mode .editor {
-  background-color: #374151; /* Dark mode: gray-700 */
-  color: #e5e7eb; /* Dark mode: gray-200 */
+body.builder.dark-mode .editor {
+  background-color: #374151;
+  color: #e5e7eb;
 }
 
 @media (min-width: 1025px) {
-  .editor {
-    flex: 1; /* Equal height with preview */
-    min-height: 914px; /* Match preview height (A4 + padding + shadow) */
-    max-height: calc(100vh - 2rem); /* Prevent overflow beyond viewport */
+  body.builder .editor {
+    flex: 1;
+    min-height: 914px;
+    max-height: calc(100vh - 2rem);
   }
 }
 
 @media (max-width: 1024px) {
-  .editor {
-    max-height: none; /* Allow full scrolling on mobile */
+  body.builder .editor {
+    max-height: none;
   }
 }
 
 /* Button Styles */
-button {
+body.builder button {
   transition: background-color 0.3s, color 0.3s;
 }
 
-#download-pdf {
-  background-color: #2563eb; /* Light mode: blue-600 */
+body.builder #download-pdf {
+  background-color: #2563eb;
   color: #ffffff;
 }
 
-body.dark-mode #download-pdf {
-  background-color: #3b82f6; /* Dark mode: blue-500 */
-  color: #e5e7eb; /* Dark mode: gray-200 */
+body.builder.dark-mode #download-pdf {
+  background-color: #3b82f6;
+  color: #e5e7eb;
 }
 
-#download-pdf:hover {
-  background-color: #1d4ed8; /* Light mode: blue-700 */
+body.builder #download-pdf:hover {
+  background-color: #1d4ed8;
 }
 
-body.dark-mode #download-pdf:hover {
-  background-color: #2563eb; /* Dark mode: blue-600 */
+body.builder.dark-mode #download-pdf:hover {
+  background-color: #2563eb;
 }
 
-#fill-sample {
-  background-color: #7c3aed; /* Light mode: purple-600 */
+body.builder #fill-sample {
+  background-color: #7c3aed;
   color: #ffffff;
 }
 
-body.dark-mode #fill-sample {
-  background-color: #8b5cf6; /* Dark mode: purple-500 */
-  color: #e5e7eb; /* Dark mode: gray-200 */
+body.builder.dark-mode #fill-sample {
+  background-color: #8b5cf6;
+  color: #e5e7eb;
 }
 
-#fill-sample:hover {
-  background-color: #6d28d9; /* Light mode: purple-700 */
+body.builder #fill-sample:hover {
+  background-color: #6d28d9;
 }
 
-body.dark-mode #fill-sample:hover {
-  background-color: #7c3aed; /* Dark mode: purple-600 */
+body.builder.dark-mode #fill-sample:hover {
+  background-color: #7c3aed;
 }
 
-#add-work, #add-extra, #add-edu, #add-project {
-  background-color: #16a34a; /* Light mode: green-600 */
+body.builder #add-work, 
+body.builder #add-extra, 
+body.builder #add-edu, 
+body.builder #add-project {
+  background-color: #16a34a;
   color: #ffffff;
 }
 
-body.dark-mode #add-work,
-body.dark-mode #add-extra,
-body.dark-mode #add-edu,
-body.dark-mode #add-project {
-  background-color: #22c55e; /* Dark mode: green-500 */
-  color: #e5e7eb; /* Dark mode: gray-200 */
+body.builder.dark-mode #add-work,
+body.builder.dark-mode #add-extra,
+body.builder.dark-mode #add-edu,
+body.builder.dark-mode #add-project {
+  background-color: #22c55e;
+  color: #e5e7eb;
 }
 
-#add-work:hover, #add-extra:hover, #add-edu:hover, #add-project:hover {
-  background-color: #15803d; /* Light mode: green-700 */
+body.builder #add-work:hover, 
+body.builder #add-extra:hover, 
+body.builder #add-edu:hover, 
+body.builder #add-project:hover {
+  background-color: #15803d;
 }
 
-body.dark-mode #add-work:hover,
-body.dark-mode #add-extra:hover,
-body.dark-mode #add-edu:hover,
-body.dark-mode #add-project:hover {
-  background-color: #16a34a; /* Dark mode: green-600 */
+body.builder.dark-mode #add-work:hover,
+body.builder.dark-mode #add-extra:hover,
+body.builder.dark-mode #add-edu:hover,
+body.builder.dark-mode #add-project:hover {
+  background-color: #16a34a;
 }
 
-#toggle-theme {
-  background-color: #d1d5db; /* Light mode: gray-300 */
-  color: #1f2937; /* Light mode: gray-900 */
+body.builder #toggle-theme {
+  background-color: #d1d5db;
+  color: #1f2937;
 }
 
-body.dark-mode #toggle-theme {
-  background-color: #4b5563; /* Dark mode: gray-600 */
-  color: #e5e7eb; /* Dark mode: gray-200 */
+body.builder.dark-mode #toggle-theme {
+  background-color: #4b5563;
+  color: #e5e7eb;
 }
 
-#toggle-theme:hover {
-  background-color: #9ca3af; /* Light mode: gray-400 */
+body.builder #toggle-theme:hover {
+  background-color: #9ca3af;
 }
 
-body.dark-mode #toggle-theme:hover {
-  background-color: #6b7280; /* Dark mode: gray-500 */
+body.builder.dark-mode #toggle-theme:hover {
+  background-color: #6b7280;
 }
 
-/* Font Size Button Styles */
-.font-size-btn {
+body.builder .font-size-btn {
   transition: background-color 0.3s, color 0.3s;
 }
 
-#font-small, #font-medium, #font-large {
-  background-color: #d1d5db; /* Light mode: gray-200 */
-  color: #1f2937; /* Light mode: gray-900 */
+body.builder #font-small, 
+body.builder #font-medium, 
+body.builder #font-large {
+  background-color: #d1d5db;
+  color: #1f2937;
 }
 
-body.dark-mode #font-small,
-body.dark-mode #font-medium,
-body.dark-mode #font-large {
-  background-color: #4b5563; /* Dark mode: gray-600 */
-  color: #e5e7eb; /* Dark mode: gray-200 */
+body.builder.dark-mode #font-small,
+body.builder.dark-mode #font-medium,
+body.builder.dark-mode #font-large {
+  background-color: #4b5563;
+  color: #e5e7eb;
 }
 
-#font-small:hover, #font-large:hover {
-  background-color: #9ca3af; /* Light mode: gray-300 */
+body.builder #font-small:hover, 
+body.builder #font-large:hover {
+  background-color: #9ca3af;
 }
 
-body.dark-mode #font-small:hover,
-body.dark-mode #font-large:hover {
-  background-color: #6b7280; /* Dark mode: gray-500 */
+body.builder.dark-mode #font-small:hover,
+body.builder.dark-mode #font-large:hover {
+  background-color: #6b7280;
 }
 
-#font-medium.active,
-#font-small.active,
-#font-large.active {
-  background-color: #2563eb; /* Light mode: blue-600 */
+body.builder #font-medium.active,
+body.builder #font-small.active,
+body.builder #font-large.active {
+  background-color: #2563eb;
   color: #ffffff;
 }
 
-body.dark-mode #font-medium.active,
-body.dark-mode #font-small.active,
-body.dark-mode #font-large.active {
-  background-color: #3b82f6; /* Dark mode: blue-500 */
-  color: #e5e7eb; /* Dark mode: gray-200 */
+body.builder.dark-mode #font-medium.active,
+body.builder.dark-mode #font-small.active,
+body.builder.dark-mode #font-large.active {
+  background-color: #3b82f6;
+  color: #e5e7eb;
 }
 
 /* Input and Textarea Styles */
-input, textarea {
-  background-color: #f9fafb; /* Light mode: gray-50 */
-  color: #1f2937; /* Light mode: gray-900 */
-  border-color: #d1d5db; /* Light mode: gray-300 */
+body.builder input, 
+body.builder textarea {
+  background-color: #f9fafb;
+  color: #1f2937;
+  border-color: #d1d5db;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
-body.dark-mode input,
-body.dark-mode textarea {
-  background-color: #4b5563; /* Dark mode: gray-600 */
-  color: #e5e7eb; /* Dark mode: gray-200 */
-  border-color: #6b7280; /* Dark mode: gray-500 */
+body.builder.dark-mode input,
+body.builder.dark-mode textarea {
+  background-color: #4b5563;
+  color: #e5e7eb;
+  border-color: #6b7280;
 }
 
-input:focus, textarea:focus {
+body.builder input:focus, 
+body.builder textarea:focus {
   outline: none;
-  border-color: #2563eb; /* Light mode: blue-600 */
+  border-color: #2563eb;
 }
 
-body.dark-mode input:focus,
-body.dark-mode textarea:focus {
-  border-color: #3b82f6; /* Dark mode: blue-500 */
+body.builder.dark-mode input:focus,
+body.builder.dark-mode textarea:focus {
+  border-color: #3b82f6;
 }
 
-/* Checkbox Styles */
-input[type="checkbox"] {
-  accent-color: #2563eb; /* Light mode: blue-600 */
+body.builder input[type="checkbox"] {
+  accent-color: #2563eb;
 }
 
-body.dark-mode input[type="checkbox"] {
-  accent-color: #3b82f6; /* Dark mode: blue-500 */
+body.builder.dark-mode input[type="checkbox"] {
+  accent-color: #3b82f6;
 }
 
 /* Word Count and Labels */
-#word-count {
-  color: #4b5563; /* Light mode: gray-600 */
+body.builder #word-count {
+  color: #4b5563;
 }
 
-body.dark-mode #word-count {
-  color: #9ca3af; /* Dark mode: gray-400 */
+body.builder.dark-mode #word-count {
+  color: #9ca3af;
 }
 
-label {
-  color: #1f2937; /* Light mode: gray-900 */
+body.builder label {
+  color: #1f2937;
 }
 
-body.dark-mode label {
-  color: #e5e7eb; /* Dark mode: gray-200 */
+body.builder.dark-mode label {
+  color: #e5e7eb;
 }
 
 /* Remove Button Styles */
-.remove-work, .remove-extra, .remove-edu, .remove-project {
-  color: #dc2626; /* Light mode: red-600 */
+body.builder .remove-work, 
+body.builder .remove-extra, 
+body.builder .remove-edu, 
+body.builder .remove-project {
+  color: #dc2626;
   transition: color 0.3s;
 }
 
-body.dark-mode .remove-work,
-body.dark-mode .remove-extra,
-body.dark-mode .remove-edu,
-body.dark-mode .remove-project {
-  color: #f87171; /* Dark mode: red-400 */
+body.builder.dark-mode .remove-work,
+body.builder.dark-mode .remove-extra,
+body.builder.dark-mode .remove-edu,
+body.builder.dark-mode .remove-project {
+  color: #f87171;
 }
 
-.remove-work:hover, .remove-extra:hover, .remove-edu:hover, .remove-project:hover {
-  color: #b91c1c; /* Light mode: red-700 */
+body.builder .remove-work:hover, 
+body.builder .remove-extra:hover, 
+body.builder .remove-edu:hover, 
+body.builder .remove-project:hover {
+  color: #b91c1c;
 }
 
-body.dark-mode .remove-work:hover,
-body.dark-mode .remove-extra:hover,
-body.dark-mode .remove-edu:hover,
-body.dark-mode .remove-project:hover {
-  color: #ef4444; /* Dark mode: red-500 */
+body.builder.dark-mode .remove-work:hover,
+body.builder.dark-mode .remove-extra:hover,
+body.builder.dark-mode .remove-edu:hover,
+body.builder.dark-mode .remove-project:hover {
+  color: #ef4444;
 }
 
-/* Ensure resume preview text and background remain unaffected in dark mode */
-#resume-preview, #resume-preview * {
+/* Resume Preview Isolation */
+body.builder #resume-preview, 
+body.builder #resume-preview * {
   background: #ffffff !important;
   color: #000000 !important;
 }
 
-/* Ensure preview section header remains consistent with dark mode */
-body.dark-mode .preview h2 {
-  color: #e5e7eb; /* Dark mode: gray-200 */
+body.builder.dark-mode .preview h2 {
+  color: #e5e7eb;
 }
