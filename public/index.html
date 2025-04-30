@@ -3,14 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resume Builder - ATS Friendly</title>
+  <title>Fresher Resume Builder - ATS Friendly</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Create ATS-friendly resumes for freshers with our free resume builder. Customize with font size adjustments and download as PDF.">
+  <meta name="keywords" content="fresher resume builder, ATS-friendly resume, resume builder for freshers, free resume builder, resume templates">
+  <meta name="author" content="Sanskar Drolia">
+  <meta name="robots" content="index, follow">
+  <!-- Open Graph Tags for Social Media -->
+  <meta property="og:title" content="Fresher Resume Builder - ATS Friendly">
+  <meta property="og:description" content="Build professional resumes for freshers with ATS compatibility, font size customization, and PDF export.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://resumeX.vercel.app">
+  <meta property="og:image" content="https://resumeX.vercel.app/og-image.jpg">
+  <!-- Replace with actual image URL -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-100 font-sans transition-colors duration-300">
+  <!-- Toast Message -->
+  <div id="toast" class="hidden fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg z-20 opacity-0 transition-opacity duration-500">
+    This Builder is in Beta - Use Laptop for Better Experience
+  </div>
+
   <div class="container mx-auto p-4 flex flex-col lg:flex-row gap-4 h-full">
     <!-- Editor Section (Top on mobile, Left on desktop) -->
-    <div class="w-full lg:w-1/2 bg-white p-6 rounded-lg shadow-lg overflow-y editor">
+    <div class="w-full lg:w-1/2 bg-white p-6 rounded-lg shadow-lg overflow-y-auto editor">
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-2xl font-bold text-gray-900">Resume Editor</h2>
         <button id="toggle-theme" class="bg-gray-300 text-gray-900 px-4 py-2 rounded hover:bg-gray-400 transition-colors">Toggle Dark Mode</button>

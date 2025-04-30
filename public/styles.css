@@ -26,6 +26,19 @@ body.dark-mode {
   }
 }
 
+/* Toast Message */
+#toast {
+  max-width: 300px;
+}
+
+#toast.show {
+  opacity: 1;
+}
+
+body.dark-mode #toast {
+  background-color: #3b82f6; /* Dark mode: blue-500 */
+}
+
 /* Preview Section */
 .preview {
   overflow: hidden; /* Disable scrolling */

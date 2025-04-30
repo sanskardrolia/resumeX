@@ -1,3 +1,4 @@
+// Unchanged from previous version
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('resume-form');
   const preview = document.getElementById('resume-preview');
@@ -9,6 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const fontLargeBtn = document.getElementById('font-large');
   const professionalSummary = document.getElementById('professional-summary');
   const wordCountDisplay = document.getElementById('word-count');
+  const toast = document.getElementById('toast');
+
+  // Show toast message on page load
+  toast.classList.remove('hidden');
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 500); // Wait for fade-out animation
+  }, 10000); // Hide after 10 seconds
 
   // Font size state
   let fontSize = localStorage.getItem('fontSize') || 'medium';
