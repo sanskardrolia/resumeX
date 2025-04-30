@@ -7,108 +7,117 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-100 font-sans">
-  <div class="container mx-auto p-4 flex flex-col lg:flex-row gap-4">
-    <!-- Preview Section (Left) -->
-    <div class="w-full lg:w-1/2 bg-white p-6 rounded-lg shadow-lg preview">
-      <h2 class="text-2xl font-bold mb-4">Resume Preview</h2>
-      <div id="resume-preview" class="border p-4">
-        <!-- Resume content will be dynamically inserted here -->
+<body class="bg-gray-100 font-sans transition-colors duration-300">
+  <div class="container mx-auto p-4 flex flex-col lg:flex-row gap-4 h-full">
+    <!-- Editor Section (Top on mobile, Left on desktop) -->
+    <div class="w-full lg:w-1/2 bg-white p-6 rounded-lg shadow-lg overflow-y-auto editor">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-bold text-gray-900">Resume Editor</h2>
+        <button id="toggle-theme" class="bg-gray-300 text-gray-900 px-4 py-2 rounded hover:bg-gray-400 transition-colors">Toggle Dark Mode</button>
       </div>
-      <button id="download-pdf" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Download PDF</button>
-    </div>
-
-    <!-- Editor Section (Right) -->
-    <div class="w-full lg:w-1/2 bg-white p-6 rounded-lg shadow-lg">
-      <h2 class="text-2xl font-bold mb-4">Resume Editor</h2>
-      <button id="fill-sample" class="mb-4 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Fill Sample Data</button>
+      <div class="flex items-center mb-4">
+        <label class="text-gray-900 mr-2">Font Size:</label>
+        <button id="font-small" class="font-size-btn bg-gray-200 text-gray-900 px-3 py-1 rounded-l hover:bg-gray-300 transition-colors">Small</button>
+        <button id="font-medium" class="font-size-btn bg-blue-600 text-white px-3 py-1 hover:bg-blue-700 transition-colors">Medium</button>
+        <button id="font-large" class="font-size-btn bg-gray-200 text-gray-900 px-3 py-1 rounded-r hover:bg-gray-300 transition-colors">Large</button>
+      </div>
+      <button id="fill-sample" class="mb-4 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition-colors">Fill Sample Data</button>
       <form id="resume-form">
         <!-- Personal Details -->
         <div class="mb-4">
-          <h3 class="text-lg font-semibold">Personal Details</h3>
-          <input type="text" id="name" placeholder="Full Name" class="w-full p-2 border rounded mb-2" required>
-          <textarea id="profile-summary" placeholder="Profile Summary" class="w-full p-2 border rounded mb-2" rows="4" maxlength="200"></textarea>
-          <input type="text" id="location" placeholder="Location" class="w-full p-2 border rounded mb-2">
-          <input type="tel" id="mobile" placeholder="Mobile Number" class="w-full p-2 border rounded mb-2">
-          <input type="url" id="linkedin" placeholder="LinkedIn URL" class="w-full p-2 border rounded mb-2">
-          <input type="url" id="portfolio" placeholder="Work Portfolio URL" class="w-full p-2 border rounded">
+          <h3 class="text-lg font-semibold text-gray-900">Personal Details</h3>
+          <input type="text" id="name" placeholder="Full Name" class="w-full p-2 border rounded mb-2 bg-gray-50 text-gray-900 border-gray-300 transition-colors" required>
+          <textarea id="profile-summary" placeholder="Profile Summary" class="w-full p-2 border rounded mb-2 bg-gray-50 text-gray-900 border-gray-300 transition-colors" rows="4" maxlength="200"></textarea>
+          <input type="text" id="location" placeholder="Location" class="w-full p-2 border rounded mb-2 bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+          <input type="tel" id="mobile" placeholder="Mobile Number" class="w-full p-2 border rounded mb-2 bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+          <input type="url" id="linkedin" placeholder="LinkedIn URL" class="w-full p-2 border rounded mb-2 bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+          <input type="url" id="portfolio" placeholder="Work Portfolio URL" class="w-full p-2 border rounded bg-gray-50 text-gray-900 border-gray-300 transition-colors">
         </div>
 
         <!-- Professional Summary -->
         <div class="mb-4">
-          <h3 class="text-lg font-semibold">Professional Summary (Max 30 Words)</h3>
-          <textarea id="professional-summary" placeholder="Professional Summary" class="w-full p-2 border rounded" rows="3" maxlength="150"></textarea>
+          <h3 class="text-lg font-semibold text-gray-900">Professional Summary (Max 30 Words)</h3>
+          <textarea id="professional-summary" placeholder="Professional Summary" class="w-full p-2 border rounded bg-gray-50 text-gray-900 border-gray-300 transition-colors" rows="3" maxlength="150"></textarea>
           <p id="word-count" class="text-sm text-gray-600">0/30 words</p>
         </div>
 
         <!-- Skills -->
         <div class="mb-4">
-          <h3 class="text-lg font-semibold">Skills</h3>
-          <input type="text" id="hard-skills" placeholder="Hard Skills (comma-separated)" class="w-full p-2 border rounded mb-2">
-          <input type="text" id="tools" placeholder="Tools (comma-separated)" class="w-full p-2 border rounded mb-2">
-          <input type="text" id="additional-skills" placeholder="Additional Skills (comma-separated)" class="w-full p-2 border rounded">
+          <h3 class="text-lg font-semibold text-gray-900">Skills</h3>
+          <input type="text" id="hard-skills" placeholder="Hard Skills (comma-separated)" class="w-full p-2 border rounded mb-2 bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+          <input type="text" id="tools" placeholder="Tools (comma-separated)" class="w-full p-2 border rounded mb-2 bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+          <input type="text" id="additional-skills" placeholder="Additional Skills (comma-separated)" class="w-full p-2 border rounded bg-gray-50 text-gray-900 border-gray-300 transition-colors">
         </div>
 
         <!-- Work Experience -->
         <div class="mb-4">
-          <h3 class="text-lg font-semibold">Work Experience</h3>
+          <h3 class="text-lg font-semibold text-gray-900">Work Experience</h3>
           <div id="work-experience">
             <div class="work-entry mb-2">
-              <input type="text" placeholder="Company Name" class="w-full p-2 border rounded mb-2 company-name">
-              <input type="text" placeholder="Designation" class="w-full p-2 border rounded mb-2 designation">
-              <input type="month" placeholder="Start Date" class="w-full p-2 border rounded mb-2 start-date">
-              <input type="month" placeholder="End Date" class="w-full p-2 border rounded mb-2 end-date">
-              <label><input type="checkbox" class="present"> Present</label>
-              <textarea placeholder="Contributions" class="w-full p-2 border rounded contributions" rows="3"></textarea>
+              <input type="text" placeholder="Company Name" class="w-full p-2 border rounded mb-2 company-name bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+              <input type="text" placeholder="Designation" class="w-full p-2 border rounded mb-2 designation bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+              <input type="month" placeholder="Start Date" class="w-full p-2 border rounded mb-2 start-date bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+              <input type="month" placeholder="End Date" class="w-full p-2 border rounded mb-2 end-date bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+              <label class="text-gray-900"><input type="checkbox" class="present"> Present</label>
+              <textarea placeholder="Contributions" class="w-full p-2 border rounded contributions bg-gray-50 text-gray-900 border-gray-300 transition-colors" rows="3"></textarea>
             </div>
           </div>
-          <button type="button" id="add-work" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Add Work Experience</button>
+          <button type="button" id="add-work" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors">Add Work Experience</button>
         </div>
 
         <!-- Extracurricular Activities -->
         <div class="mb-4">
-          <h3 class="text-lg font-semibold">Extracurricular Activities</h3>
+          <h3 class="text-lg font-semibold text-gray-900">Extracurricular Activities</h3>
           <div id="extracurricular">
             <div class="extra-entry mb-2">
-              <input type="text" placeholder="Activity Name" class="w-full p-2 border rounded mb-2 activity-name">
-              <textarea placeholder="Brief Description" class="w-full p-2 border rounded description" rows="3"></textarea>
+              <input type="text" placeholder="Activity Name" class="w-full p-2 border rounded mb-2 activity-name bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+              <textarea placeholder="Brief Description" class="w-full p-2 border rounded description bg-gray-50 text-gray-900 border-gray-300 transition-colors" rows="3"></textarea>
             </div>
           </div>
-          <button type="button" id="add-extra" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Add Activity</button>
+          <button type="button" id="add-extra" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors">Add Activity</button>
         </div>
 
         <!-- Education -->
         <div class="mb-4">
-          <h3 class="text-lg font-semibold">Education</h3>
+          <h3 class="text-lg font-semibold text-gray-900">Education</h3>
           <div id="education">
             <div class="edu-entry mb-2">
-              <input type="text" placeholder="Course and Branch" class="w-full p-2 border rounded mb-2 course">
-              <input type="text" placeholder="College Name" class="w-full p-2 border rounded mb-2 college">
-              <input type="text" placeholder="CGPA/Percentage" class="w-full p-2 border rounded marks">
+              <input type="text" placeholder="Course and Branch" class="w-full p-2 border rounded mb-2 course bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+              <input type="text" placeholder="College Name" class="w-full p-2 border rounded mb-2 college bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+              <input type="text" placeholder="CGPA/Percentage" class="w-full p-2 border rounded marks bg-gray-50 text-gray-900 border-gray-300 transition-colors">
             </div>
           </div>
-          <button type="button" id="add-edu" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Add Education</button>
+          <button type="button" id="add-edu" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors">Add Education</button>
         </div>
 
         <!-- Personal Projects -->
         <div class="mb-4">
-          <h3 class="text-lg font-semibold">Personal Projects</h3>
+          <h3 class="text-lg font-semibold text-gray-900">Personal Projects</h3>
           <div id="projects">
             <div class="project-entry mb-2">
-              <input type="text" placeholder="Project Name" class="w-full p-2 border rounded mb-2 project-name">
-              <input type="url" placeholder="Project URL" class="w-full p-2 border rounded mb-2 project-url">
-              <textarea placeholder="Brief Description" class="w-full p-2 border rounded description" rows="3"></textarea>
+              <input type="text" placeholder="Project Name" class="w-full p-2 border rounded mb-2 project-name bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+              <input type="url" placeholder="Project URL" class="w-full p-2 border rounded mb-2 project-url bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+              <textarea placeholder="Brief Description" class="w-full p-2 border rounded description bg-gray-50 text-gray-900 border-gray-300 transition-colors" rows="3"></textarea>
             </div>
           </div>
-          <button type="button" id="add-project" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Add Project</button>
+          <button type="button" id="add-project" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors">Add Project</button>
         </div>
 
         <!-- Hobbies and Interests -->
         <div class="mb-4">
-          <h3 class="text-lg font-semibold">Hobbies and Interests</h3>
-          <input type="text" id="hobbies" placeholder="Hobbies (comma-separated)" class="w-full p-2 border rounded">
+          <h3 class="text-lg font-semibold text-gray-900">Hobbies and Interests</h3>
+          <input type="text" id="hobbies" placeholder="Hobbies (comma-separated)" class="w-full p-2 border rounded bg-gray-50 text-gray-900 border-gray-300 transition-colors">
         </div>
       </form>
+    </div>
+
+    <!-- Preview Section (Bottom on mobile, Right on desktop) -->
+    <div class="w-full lg:w-1/2 bg-white p-6 rounded-lg shadow-lg preview">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900">Resume Preview</h2>
+      <div id="resume-preview" class="border p-4 bg-white font-medium">
+        <!-- Resume content will be dynamically inserted here -->
+      </div>
+      <button id="download-pdf" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">Download PDF</button>
     </div>
   </div>
 

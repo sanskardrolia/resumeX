@@ -1,38 +1,313 @@
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6; /* Light mode: gray-100 */
+  color: #1f2937; /* Light mode: gray-900 */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #1f2937; /* Dark mode: gray-800 */
+  color: #e5e7eb; /* Dark mode: gray-200 */
+}
+
+/* Container for Editor and Preview */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: calc(100vh - 2rem); /* Ensure full viewport height minus padding */
+}
+
+@media (min-width: 1025px) {
+  .container {
+    flex-direction: row;
+    align-items: stretch; /* Ensure children stretch to equal height */
   }
-  
-  .preview, #resume-preview {
-    overflow-x: auto;
+}
+
+/* Preview Section */
+.preview {
+  overflow: hidden; /* Disable scrolling */
+  background-color: #ffffff; /* Always white for consistency with PDF */
+  transition: none;
+  display: flex;
+  flex-direction: column;
+}
+
+body.dark-mode .preview {
+  background-color: #ffffff; /* Ensure preview remains white in dark mode */
+}
+
+@media (min-width: 1025px) {
+  .preview {
+    flex: 1; /* Equal height with editor */
+    min-height: 914px; /* A4 height (842px) + padding (2 * 24px) + shadow */
   }
-  
+}
+
+/* Ensure A4 preview is non-scrollable and fits viewport */
+#resume-preview {
+  overflow: hidden;
+  background: #ffffff !important; /* Always white for resume paper effect */
+  color: #000000 !important; /* Always black text */
+  min-height: 842px; /* A4 height */
+  width: 595px; /* A4 width */
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Font size classes for preview */
+#resume-preview.font-small {
+  font-size: 0.8em; /* 80% of base */
+}
+#resume-preview.font-medium {
+  font-size: 1em; /* 100% of base */
+}
+#resume-preview.font-large {
+  font-size: 1.2em; /* 120% of base */
+}
+
+@media (max-width: 1024px) {
   #resume-preview {
-    background: white;
-    min-height: 842px; /* A4 height */
-    width: 595px; /* A4 width */
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 100%; /* Full width on mobile */
+    min-height: 842px; /* Maintain A4 height */
+    box-sizing: border-box;
   }
-  
-  @media (max-width: 1024px) {
-    .container {
-      flex-direction: column;
-    }
-    #resume-preview {
-      width: 100%;
-      min-height: auto;
-    }
+}
+
+/* Editor Section */
+.editor {
+  overflow-y: auto; /* Enable vertical scrolling */
+  background-color: #ffffff; /* Light mode: white */
+  color: #1f2937; /* Light mode: gray-900 */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode .editor {
+  background-color: #374151; /* Dark mode: gray-700 */
+  color: #e5e7eb; /* Dark mode: gray-200 */
+}
+
+@media (min-width: 1025px) {
+  .editor {
+    flex: 1; /* Equal height with preview */
+    min-height: 914px; /* Match preview height (A4 + padding + shadow) */
+    max-height: calc(100vh - 2rem); /* Prevent overflow beyond viewport */
   }
-  
-  button {
-    transition: background-color 0.3s;
+}
+
+@media (max-width: 1024px) {
+  .editor {
+    max-height: none; /* Allow full scrolling on mobile */
   }
-  
-  input, textarea {
-    transition: border-color 0.3s;
-  }
-  
-  input:focus, textarea:focus {
-    outline: none;
-    border-color: #2563eb;
-  }
+}
+
+/* Button Styles */
+button {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#download-pdf {
+  background-color: #2563eb; /* Light mode: blue-600 */
+  color: #ffffff;
+}
+
+body.dark-mode #download-pdf {
+  background-color: #3b82f6; /* Dark mode: blue-500 */
+  color: #e5e7eb; /* Dark mode: gray-200 */
+}
+
+#download-pdf:hover {
+  background-color: #1d4ed8; /* Light mode: blue-700 */
+}
+
+body.dark-mode #download-pdf:hover {
+  background-color: #2563eb; /* Dark mode: blue-600 */
+}
+
+#fill-sample {
+  background-color: #7c3aed; /* Light mode: purple-600 */
+  color: #ffffff;
+}
+
+body.dark-mode #fill-sample {
+  background-color: #8b5cf6; /* Dark mode: purple-500 */
+  color: #e5e7eb; /* Dark mode: gray-200 */
+}
+
+#fill-sample:hover {
+  background-color: #6d28d9; /* Light mode: purple-700 */
+}
+
+body.dark-mode #fill-sample:hover {
+  background-color: #7c3aed; /* Dark mode: purple-600 */
+}
+
+#add-work, #add-extra, #add-edu, #add-project {
+  background-color: #16a34a; /* Light mode: green-600 */
+  color: #ffffff;
+}
+
+body.dark-mode #add-work,
+body.dark-mode #add-extra,
+body.dark-mode #add-edu,
+body.dark-mode #add-project {
+  background-color: #22c55e; /* Dark mode: green-500 */
+  color: #e5e7eb; /* Dark mode: gray-200 */
+}
+
+#add-work:hover, #add-extra:hover, #add-edu:hover, #add-project:hover {
+  background-color: #15803d; /* Light mode: green-700 */
+}
+
+body.dark-mode #add-work:hover,
+body.dark-mode #add-extra:hover,
+body.dark-mode #add-edu:hover,
+body.dark-mode #add-project:hover {
+  background-color: #16a34a; /* Dark mode: green-600 */
+}
+
+#toggle-theme {
+  background-color: #d1d5db; /* Light mode: gray-300 */
+  color: #1f2937; /* Light mode: gray-900 */
+}
+
+body.dark-mode #toggle-theme {
+  background-color: #4b5563; /* Dark mode: gray-600 */
+  color: #e5e7eb; /* Dark mode: gray-200 */
+}
+
+#toggle-theme:hover {
+  background-color: #9ca3af; /* Light mode: gray-400 */
+}
+
+body.dark-mode #toggle-theme:hover {
+  background-color: #6b7280; /* Dark mode: gray-500 */
+}
+
+/* Font Size Button Styles */
+.font-size-btn {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#font-small, #font-medium, #font-large {
+  background-color: #d1d5db; /* Light mode: gray-200 */
+  color: #1f2937; /* Light mode: gray-900 */
+}
+
+body.dark-mode #font-small,
+body.dark-mode #font-medium,
+body.dark-mode #font-large {
+  background-color: #4b5563; /* Dark mode: gray-600 */
+  color: #e5e7eb; /* Dark mode: gray-200 */
+}
+
+#font-small:hover, #font-large:hover {
+  background-color: #9ca3af; /* Light mode: gray-300 */
+}
+
+body.dark-mode #font-small:hover,
+body.dark-mode #font-large:hover {
+  background-color: #6b7280; /* Dark mode: gray-500 */
+}
+
+#font-medium.active,
+#font-small.active,
+#font-large.active {
+  background-color: #2563eb; /* Light mode: blue-600 */
+  color: #ffffff;
+}
+
+body.dark-mode #font-medium.active,
+body.dark-mode #font-small.active,
+body.dark-mode #font-large.active {
+  background-color: #3b82f6; /* Dark mode: blue-500 */
+  color: #e5e7eb; /* Dark mode: gray-200 */
+}
+
+/* Input and Textarea Styles */
+input, textarea {
+  background-color: #f9fafb; /* Light mode: gray-50 */
+  color: #1f2937; /* Light mode: gray-900 */
+  border-color: #d1d5db; /* Light mode: gray-300 */
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+  background-color: #4b5563; /* Dark mode: gray-600 */
+  color: #e5e7eb; /* Dark mode: gray-200 */
+  border-color: #6b7280; /* Dark mode: gray-500 */
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #2563eb; /* Light mode: blue-600 */
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus {
+  border-color: #3b82f6; /* Dark mode: blue-500 */
+}
+
+/* Checkbox Styles */
+input[type="checkbox"] {
+  accent-color: #2563eb; /* Light mode: blue-600 */
+}
+
+body.dark-mode input[type="checkbox"] {
+  accent-color: #3b82f6; /* Dark mode: blue-500 */
+}
+
+/* Word Count and Labels */
+#word-count {
+  color: #4b5563; /* Light mode: gray-600 */
+}
+
+body.dark-mode #word-count {
+  color: #9ca3af; /* Dark mode: gray-400 */
+}
+
+label {
+  color: #1f2937; /* Light mode: gray-900 */
+}
+
+body.dark-mode label {
+  color: #e5e7eb; /* Dark mode: gray-200 */
+}
+
+/* Remove Button Styles */
+.remove-work, .remove-extra, .remove-edu, .remove-project {
+  color: #dc2626; /* Light mode: red-600 */
+  transition: color 0.3s;
+}
+
+body.dark-mode .remove-work,
+body.dark-mode .remove-extra,
+body.dark-mode .remove-edu,
+body.dark-mode .remove-project {
+  color: #f87171; /* Dark mode: red-400 */
+}
+
+.remove-work:hover, .remove-extra:hover, .remove-edu:hover, .remove-project:hover {
+  color: #b91c1c; /* Light mode: red-700 */
+}
+
+body.dark-mode .remove-work:hover,
+body.dark-mode .remove-extra:hover,
+body.dark-mode .remove-edu:hover,
+body.dark-mode .remove-project:hover {
+  color: #ef4444; /* Dark mode: red-500 */
+}
+
+/* Ensure resume preview text and background remain unaffected in dark mode */
+#resume-preview, #resume-preview * {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Ensure preview section header remains consistent with dark mode */
+body.dark-mode .preview h2 {
+  color: #e5e7eb; /* Dark mode: gray-200 */
+}
