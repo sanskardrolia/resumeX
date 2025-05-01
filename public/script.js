@@ -1,8 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Shared functionality for both pages
+  const toggleThemeBtn = document.getElementById('toggle-theme');
+  const shareButton = document.getElementById('share-button');
+  const shareToast = document.getElementById('share-toast');
+  const body = document.body;
+
+  // Theme initialization
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  body.setAttribute('data-theme', savedTheme);
+  if (toggleThemeBtn) {
+    toggleThemeBtn.textContent = savedTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+  }
+
+  // Theme toggle
+  if (toggleThemeBtn) {
+    toggleThemeBtn.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      toggleThemeBtn.textContent = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+    });
+  }
+
+  // Reusable toast display function
+  const showToast = (toastElement, duration) => {
+    if (!toastElement) {
+      console.error('Toast element not found');
+      return;
+    }
+    try {
+      toastElement.classList.remove('hidden');
+      toastElement.classList.add('show');
+      setTimeout(() => {
+        toastElement.classList.remove('show');
+        setTimeout(() => {
+          toastElement.classList.add('hidden');
+        }, 500); // Match CSS transition duration
+      }, duration);
+    } catch (error) {
+      console.error('Error displaying toast:', error);
+    }
+  };
+
+  // Share functionality
+  if (shareButton && shareToast) {
+    shareButton.addEventListener('click', async () => {
+      const shareData = {
+        title: 'Fresher Resume Builder',
+        text: 'Build ATS-friendly resumes for freshers for FREE',
+        url: 'https://fresher-resume.vercel.app'
+      };
+
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          // Fallback: Copy to clipboard
+          const shareText = `${shareData.text}: ${shareData.url}`;
+          await navigator.clipboard.writeText(shareText);
+          showToast(shareToast, 3000);
+        }
+      } catch (error) {
+        console.error('Error sharing:', error);
+        // Fallback: Copy to clipboard
+        const shareText = `${shareData.text}: ${shareData.url}`;
+        await navigator.clipboard.writeText(shareText);
+        showToast(shareToast, 3000);
+      }
+    });
+  }
+
   // Homepage-specific logic
   if (window.location.pathname === '/') {
-    // Add smooth scroll for homepage CTA buttons (optional enhancement)
-    const ctaButtons = document.querySelectorAll('.hero-cta, .nav-button');
+    // Add smooth scroll for homepage CTA buttons
+    const ctaButtons = document.querySelectorAll('.hero-cta, .nav-button[href="/builder"]');
     ctaButtons.forEach(button => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
@@ -14,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Resume Builder-specific logic
   if (window.location.pathname === '/builder') {
     const toast = document.getElementById('toast');
-    const toggleThemeBtn = document.getElementById('toggle-theme');
     const form = document.getElementById('resume-form');
     const preview = document.getElementById('resume-preview');
     const downloadBtn = document.getElementById('download-pdf');
@@ -28,32 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add builder class to body for CSS scoping
     document.body.classList.add('builder');
 
-    // Toast Message
+    // Toast Message on page load
     if (toast) {
-      toast.classList.remove('hidden');
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => {
-          toast.classList.add('hidden');
-        }, 500);
-      }, 10000);
-    }
-
-    // Theme Toggle
-    if (toggleThemeBtn) {
-      const toggleTheme = () => {
-        const isDark = document.body.classList.toggle('dark-mode');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        toggleThemeBtn.textContent = isDark ? 'Toggle Light Mode' : 'Toggle Dark Mode';
-      };
-
-      if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-        toggleThemeBtn.textContent = 'Toggle Light Mode';
-      }
-
-      toggleThemeBtn.addEventListener('click', toggleTheme);
+      showToast(toast, 10000);
     }
 
     // Font size state
@@ -90,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         wordCountDisplay.classList.remove('text-gray-600', 'text-gray-400');
       } else {
         wordCountDisplay.classList.remove('text-red-600');
-        wordCountDisplay.classList.add(document.body.classList.contains('dark-mode') ? 'text-gray-400' : 'text-gray-600');
+        wordCountDisplay.classList.add(body.getAttribute('data-theme') === 'dark' ? 'text-gray-400' : 'text-gray-600');
       }
     });
 
@@ -268,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (words.length > 30) {
         wordCountDisplay.classList.add('text-red-600');
       } else {
-        wordCountDisplay.classList.add(document.body.classList.contains('dark-mode') ? 'text-gray-400' : 'text-gray-600');
+        wordCountDisplay.classList.add(body.getAttribute('data-theme') === 'dark' ? 'text-gray-400' : 'text-gray-600');
       }
       updatePreview();
     });

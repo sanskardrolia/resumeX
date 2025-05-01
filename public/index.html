@@ -13,16 +13,20 @@
   <meta property="og:title" content="Fresher Resume Builder - ATS Friendly">
   <meta property="og:description" content="Create professional resumes for freshers with ATS compatibility, customization, and PDF export.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://resumeX.vercel.app">
-  <meta property="og:image" content="https://resumeX.vercel.app/images/resume-hero.jpg">
+  <meta property="og:url" content="https://fresher-resume.vercel.app">
+  <meta property="og:image" content="https://fresher-resume.vercel.app/images/hero.png">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-theme="light">
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav-container">
       <h1 class="nav-logo">Fresher Resume Builder</h1>
-      <a href="/builder" class="nav-button">Start Building</a>
+      <div class="nav-buttons">
+        <a href="/builder" class="nav-button">Start Building</a>
+        <button id="share-button" class="nav-button">Share</button>
+        <button id="toggle-theme" class="nav-button">Dark Mode</button>
+      </div>
     </div>
   </nav>
 
@@ -41,7 +45,7 @@
   <!-- Features Section -->
   <section class="features">
     <div class="features-container">
-      <h2 class="features-title">Why Choose ResumeX?</h2>
+      <h2 class="features-title">Why Choose Fresher Resume Builder?</h2>
       <div class="features-grid">
         <div class="feature-item">
           <h3>ATS-Friendly Design</h3>
@@ -53,7 +57,7 @@
         </div>
         <div class="feature-item">
           <h3>Customizable Options</h3>
-          <p>Adjust font sizes, toggle dark mode, and fill sample data for quick setup.</p>
+          <p>Adjust font sizes and fill sample data for quick setup.</p>
         </div>
         <div class="feature-item">
           <h3>PDF Export</h3>
@@ -66,10 +70,15 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
-      <p>&copy; 2025 ResumeX. All rights reserved.</p>
-      <p>Created by Sanskar Drolia</p>
+      <p>© 2025 Fresher Resume Builder.</p>
+      <p>Created by <a href="https://www.linkedin.com/in/sanskardrolia/" target="_blank">Sanskar Drolia</a></p>
     </div>
   </footer>
+
+  <!-- Share Toast -->
+  <div id="share-toast" class="hidden fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg z-20 opacity-0 transition-opacity duration-500">
+    Link copied to clipboard!
+  </div>
 
   <script src="script.js"></script>
 </body>

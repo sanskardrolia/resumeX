@@ -1,11 +1,4 @@
-/* Homepage Styles (Vanilla CSS) */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: #333;
-  background-color: #f8f9fa;
-}
-
+/* Shared Navigation Styles (Vanilla CSS) */
 .nav {
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -13,6 +6,11 @@ body {
   width: 100%;
   top: 0;
   z-index: 1000;
+}
+
+[data-theme="dark"] .nav {
+  background-color: #1f2937;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .nav-container {
@@ -31,6 +29,15 @@ body {
   margin: 0;
 }
 
+[data-theme="dark"] .nav-logo {
+  color: #e5e7eb;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
 .nav-button {
   background-color: #007bff;
   color: #fff;
@@ -38,6 +45,8 @@ body {
   border-radius: 5px;
   text-decoration: none;
   font-size: 16px;
+  border: none;
+  cursor: pointer;
   transition: background-color 0.3s;
 }
 
@@ -45,9 +54,34 @@ body {
   background-color: #0056b3;
 }
 
+[data-theme="dark"] .nav-button {
+  background-color: #3b82f6;
+}
+
+[data-theme="dark"] .nav-button:hover {
+  background-color: #2563eb;
+}
+
+/* Homepage Styles (Vanilla CSS) */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+[data-theme="dark"] {
+  color: #e5e7eb;
+  background-color: #111827;
+}
+
 .hero {
   padding: 100px 20px 60px;
   background-color: #e9ecef;
+}
+
+[data-theme="dark"] .hero {
+  background-color: #1f2937;
 }
 
 .hero-container {
@@ -71,11 +105,19 @@ body {
   color: #222;
 }
 
+[data-theme="dark"] .hero-title {
+  color: #f9fafb;
+}
+
 .hero-subtitle {
   font-size: 18px;
   line-height: 1.6;
   margin-bottom: 30px;
   color: #555;
+}
+
+[data-theme="dark"] .hero-subtitle {
+  color: #d1d5db;
 }
 
 .hero-cta {
@@ -92,6 +134,14 @@ body {
   background-color: #218838;
 }
 
+[data-theme="dark"] .hero-cta {
+  background-color: #22c55e;
+}
+
+[data-theme="dark"] .hero-cta:hover {
+  background-color: #16a34a;
+}
+
 .hero-image {
   flex: 1;
   min-width: 300px;
@@ -101,9 +151,17 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+[data-theme="dark"] .hero-image {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
 .features {
   padding: 60px 20px;
   background-color: #fff;
+}
+
+[data-theme="dark"] .features {
+  background-color: #1f2937;
 }
 
 .features-container {
@@ -119,6 +177,10 @@ body {
   color: #222;
 }
 
+[data-theme="dark"] .features-title {
+  color: #f9fafb;
+}
+
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -132,11 +194,20 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+[data-theme="dark"] .feature-item {
+  background-color: #374151;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 .feature-item h3 {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 15px;
   color: #333;
+}
+
+[data-theme="dark"] .feature-item h3 {
+  color: #e5e7eb;
 }
 
 .feature-item p {
@@ -145,11 +216,19 @@ body {
   color: #555;
 }
 
+[data-theme="dark"] .feature-item p {
+  color: #d1d5db;
+}
+
 .footer {
   background-color: #343a40;
   color: #fff;
   padding: 20px;
   text-align: center;
+}
+
+[data-theme="dark"] .footer {
+  background-color: #111827;
 }
 
 .footer-container {
@@ -160,6 +239,25 @@ body {
 .footer p {
   margin: 5px 0;
   font-size: 14px;
+}
+
+/* Toast Styles (Homepage and Builder) */
+#toast,
+#share-toast {
+  max-width: 300px;
+  z-index: 2000; /* Ensure above nav bar */
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#toast.show,
+#share-toast.show {
+  opacity: 1;
+}
+
+#toast.hidden,
+#share-toast.hidden {
+  display: none;
 }
 
 /* Responsive Design for Homepage */
@@ -186,53 +284,55 @@ body {
   .feature-item p {
     font-size: 14px;
   }
+  .nav-buttons {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nav-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
 }
 
-/* Resume Builder Styles (Preserved, Tailwind CSS) */
+/* Resume Builder Styles (Tailwind CSS with Dark Theme Overrides) */
 body.builder {
   font-family: Arial, sans-serif;
+}
+
+body.builder[data-theme="light"] {
   background-color: #f3f4f6; /* Light mode: gray-100 */
   color: #1f2937; /* Light mode: gray-900 */
-  transition: background-color 0.3s, color 0.3s;
 }
 
-body.builder.dark-mode {
-  background-color: #1f2937; /* Dark mode: gray-800 */
+body.builder[data-theme="dark"] {
+  background-color: #111827; /* Dark mode: gray-900 */
   color: #e5e7eb; /* Dark mode: gray-200 */
 }
 
-/* Navigation */
-body.builder nav {
-  background-color: #ffffff; /* Light mode: white */
-  transition: background-color 0.3s;
-}
-
-body.builder.dark-mode nav {
-  background-color: #374151; /* Dark mode: gray-700 */
-}
-
-body.builder nav h1 {
-  color: #1f2937; /* Light mode: gray-900 */
-}
-
-body.builder.dark-mode nav h1 {
-  color: #e5e7eb; /* Dark mode: gray-200 */
-}
-
-/* Toast Message */
+/* Toast Message (Builder) */
 body.builder #toast {
   max-width: 300px;
+  background-color: #2563eb;
+  color: #ffffff;
+  z-index: 2000;
 }
 
-body.builder #toast.show {
-  opacity: 1;
+body.builder[data-theme="dark"] #toast {
+  background-color: #3b82f6;
 }
 
-body.builder.dark-mode #toast {
-  background-color: #3b82f6; /* Dark mode: blue-500 */
+/* Share Toast (Builder) */
+body.builder #share-toast {
+  background-color: #2563eb;
+  color: #ffffff;
+  z-index: 2000;
 }
 
-/* Resume Builder Styles */
+body.builder[data-theme="dark"] #share-toast {
+  background-color: #3b82f6;
+}
+
+/* Resume Builder Container */
 body.builder .container {
   display: flex;
   flex-direction: column;
@@ -250,13 +350,13 @@ body.builder .container {
 body.builder .preview {
   overflow: hidden;
   background-color: #ffffff;
-  transition: none;
   display: flex;
   flex-direction: column;
 }
 
-body.builder.dark-mode .preview {
-  background-color: #ffffff;
+body.builder[data-theme="dark"] .preview {
+  background-color: #1f2937;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 @media (min-width: 1025px) {
@@ -266,6 +366,7 @@ body.builder.dark-mode .preview {
   }
 }
 
+/* Resume Preview (Always White for ATS Compatibility) */
 body.builder #resume-preview {
   overflow: hidden;
   background: #ffffff !important;
@@ -297,12 +398,12 @@ body.builder .editor {
   overflow-y: auto;
   background-color: #ffffff;
   color: #1f2937;
-  transition: background-color 0.3s, color 0.3s;
 }
 
-body.builder.dark-mode .editor {
-  background-color: #374151;
+body.builder[data-theme="dark"] .editor {
+  background-color: #1f2937;
   color: #e5e7eb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 @media (min-width: 1025px) {
@@ -319,7 +420,7 @@ body.builder.dark-mode .editor {
   }
 }
 
-/* Button Styles */
+/* Button Styles (Builder) */
 body.builder button {
   transition: background-color 0.3s, color 0.3s;
 }
@@ -329,16 +430,15 @@ body.builder #download-pdf {
   color: #ffffff;
 }
 
-body.builder.dark-mode #download-pdf {
+body.builder[data-theme="dark"] #download-pdf {
   background-color: #3b82f6;
-  color: #e5e7eb;
 }
 
 body.builder #download-pdf:hover {
   background-color: #1d4ed8;
 }
 
-body.builder.dark-mode #download-pdf:hover {
+body.builder[data-theme="dark"] #download-pdf:hover {
   background-color: #2563eb;
 }
 
@@ -347,16 +447,15 @@ body.builder #fill-sample {
   color: #ffffff;
 }
 
-body.builder.dark-mode #fill-sample {
+body.builder[data-theme="dark"] #fill-sample {
   background-color: #8b5cf6;
-  color: #e5e7eb;
 }
 
 body.builder #fill-sample:hover {
   background-color: #6d28d9;
 }
 
-body.builder.dark-mode #fill-sample:hover {
+body.builder[data-theme="dark"] #fill-sample:hover {
   background-color: #7c3aed;
 }
 
@@ -368,12 +467,11 @@ body.builder #add-project {
   color: #ffffff;
 }
 
-body.builder.dark-mode #add-work,
-body.builder.dark-mode #add-extra,
-body.builder.dark-mode #add-edu,
-body.builder.dark-mode #add-project {
+body.builder[data-theme="dark"] #add-work, 
+body.builder[data-theme="dark"] #add-extra, 
+body.builder[data-theme="dark"] #add-edu, 
+body.builder[data-theme="dark"] #add-project {
   background-color: #22c55e;
-  color: #e5e7eb;
 }
 
 body.builder #add-work:hover, 
@@ -383,29 +481,11 @@ body.builder #add-project:hover {
   background-color: #15803d;
 }
 
-body.builder.dark-mode #add-work:hover,
-body.builder.dark-mode #add-extra:hover,
-body.builder.dark-mode #add-edu:hover,
-body.builder.dark-mode #add-project:hover {
+body.builder[data-theme="dark"] #add-work:hover, 
+body.builder[data-theme="dark"] #add-extra:hover, 
+body.builder[data-theme="dark"] #add-edu:hover, 
+body.builder[data-theme="dark"] #add-project:hover {
   background-color: #16a34a;
-}
-
-body.builder #toggle-theme {
-  background-color: #d1d5db;
-  color: #1f2937;
-}
-
-body.builder.dark-mode #toggle-theme {
-  background-color: #4b5563;
-  color: #e5e7eb;
-}
-
-body.builder #toggle-theme:hover {
-  background-color: #9ca3af;
-}
-
-body.builder.dark-mode #toggle-theme:hover {
-  background-color: #6b7280;
 }
 
 body.builder .font-size-btn {
@@ -419,9 +499,9 @@ body.builder #font-large {
   color: #1f2937;
 }
 
-body.builder.dark-mode #font-small,
-body.builder.dark-mode #font-medium,
-body.builder.dark-mode #font-large {
+body.builder[data-theme="dark"] #font-small, 
+body.builder[data-theme="dark"] #font-medium, 
+body.builder[data-theme="dark"] #font-large {
   background-color: #4b5563;
   color: #e5e7eb;
 }
@@ -431,8 +511,8 @@ body.builder #font-large:hover {
   background-color: #9ca3af;
 }
 
-body.builder.dark-mode #font-small:hover,
-body.builder.dark-mode #font-large:hover {
+body.builder[data-theme="dark"] #font-small:hover, 
+body.builder[data-theme="dark"] #font-large:hover {
   background-color: #6b7280;
 }
 
@@ -443,11 +523,10 @@ body.builder #font-large.active {
   color: #ffffff;
 }
 
-body.builder.dark-mode #font-medium.active,
-body.builder.dark-mode #font-small.active,
-body.builder.dark-mode #font-large.active {
+body.builder[data-theme="dark"] #font-medium.active,
+body.builder[data-theme="dark"] #font-small.active,
+body.builder[data-theme="dark"] #font-large.active {
   background-color: #3b82f6;
-  color: #e5e7eb;
 }
 
 /* Input and Textarea Styles */
@@ -456,14 +535,13 @@ body.builder textarea {
   background-color: #f9fafb;
   color: #1f2937;
   border-color: #d1d5db;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
-body.builder.dark-mode input,
-body.builder.dark-mode textarea {
-  background-color: #4b5563;
+body.builder[data-theme="dark"] input, 
+body.builder[data-theme="dark"] textarea {
+  background-color: #374151;
   color: #e5e7eb;
-  border-color: #6b7280;
+  border-color: #4b5563;
 }
 
 body.builder input:focus, 
@@ -472,8 +550,8 @@ body.builder textarea:focus {
   border-color: #2563eb;
 }
 
-body.builder.dark-mode input:focus,
-body.builder.dark-mode textarea:focus {
+body.builder[data-theme="dark"] input:focus, 
+body.builder[data-theme="dark"] textarea:focus {
   border-color: #3b82f6;
 }
 
@@ -481,7 +559,7 @@ body.builder input[type="checkbox"] {
   accent-color: #2563eb;
 }
 
-body.builder.dark-mode input[type="checkbox"] {
+body.builder[data-theme="dark"] input[type="checkbox"] {
   accent-color: #3b82f6;
 }
 
@@ -490,7 +568,7 @@ body.builder #word-count {
   color: #4b5563;
 }
 
-body.builder.dark-mode #word-count {
+body.builder[data-theme="dark"] #word-count {
   color: #9ca3af;
 }
 
@@ -498,7 +576,7 @@ body.builder label {
   color: #1f2937;
 }
 
-body.builder.dark-mode label {
+body.builder[data-theme="dark"] label {
   color: #e5e7eb;
 }
 
@@ -508,13 +586,12 @@ body.builder .remove-extra,
 body.builder .remove-edu, 
 body.builder .remove-project {
   color: #dc2626;
-  transition: color 0.3s;
 }
 
-body.builder.dark-mode .remove-work,
-body.builder.dark-mode .remove-extra,
-body.builder.dark-mode .remove-edu,
-body.builder.dark-mode .remove-project {
+body.builder[data-theme="dark"] .remove-work, 
+body.builder[data-theme="dark"] .remove-extra, 
+body.builder[data-theme="dark"] .remove-edu, 
+body.builder[data-theme="dark"] .remove-project {
   color: #f87171;
 }
 
@@ -525,10 +602,10 @@ body.builder .remove-project:hover {
   color: #b91c1c;
 }
 
-body.builder.dark-mode .remove-work:hover,
-body.builder.dark-mode .remove-extra:hover,
-body.builder.dark-mode .remove-edu:hover,
-body.builder.dark-mode .remove-project:hover {
+body.builder[data-theme="dark"] .remove-work:hover, 
+body.builder[data-theme="dark"] .remove-extra:hover, 
+body.builder[data-theme="dark"] .remove-edu:hover, 
+body.builder[data-theme="dark"] .remove-project:hover {
   color: #ef4444;
 }
 
@@ -537,8 +614,4 @@ body.builder #resume-preview,
 body.builder #resume-preview * {
   background: #ffffff !important;
   color: #000000 !important;
-}
-
-body.builder.dark-mode .preview h2 {
-  color: #e5e7eb;
 }
