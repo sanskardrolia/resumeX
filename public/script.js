@@ -611,24 +611,24 @@ document.addEventListener('DOMContentLoaded', () => {
         drawText(data.name, boldFont, 18, true);
 
         // Contact
-        drawText(data.contact, font, 10);
+        drawText(data.contact, font, 13);
         yPosition -= 4 * fontScale;
 
         // Profile Summary
-        drawText(data.profileSummary, font, 10);
+        drawText(data.profileSummary, font, 13);
         drawSeparatorLine();
 
         // Professional Summary
         drawText('Professional Summary', boldFont, 14, true);
-        drawText(data.professionalSummary, font, 10);
+        drawText(data.professionalSummary, font, 13);
         yPosition -= entrySpacing;
         drawSeparatorLine();
 
         // Skills
         drawText('Skills', boldFont, 14, true);
-        drawText(data.hardSkills, font, 10);
-        drawText(data.tools, font, 10);
-        drawText(data.additionalSkills, font, 10);
+        drawText(data.hardSkills, font, 13);
+        drawText(data.tools, font, 13);
+        drawText(data.additionalSkills, font, 13);
         yPosition -= entrySpacing;
         drawSeparatorLine();
 
@@ -636,9 +636,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.workExperience.length > 0) {
           drawText('Work Experience', boldFont, 14, true);
           data.workExperience.forEach(exp => {
-            drawText(`${exp.company || 'Company'} - ${exp.designation || 'Designation'}`, boldFont, 10);
-            drawText(`${exp.startDate || 'Start'} - ${exp.endDate || 'End'}`, font, 10);
-            drawText(exp.contributions || 'Contributions', font, 10);
+            drawText(`${exp.company || 'Company'} - ${exp.designation || 'Designation'}`, boldFont, 13);
+            drawText(`${exp.startDate || 'Start'} - ${exp.endDate || 'End'}`, font, 13);
+            drawText(exp.contributions || 'Contributions', font, 13);
             yPosition -= entrySpacing;
           });
           drawSeparatorLine();
@@ -648,8 +648,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.extracurricular.length > 0) {
           drawText('Extracurricular Activities', boldFont, 14, true);
           data.extracurricular.forEach(act => {
-            drawText(act.name || 'Activity', boldFont, 10);
-            drawText(act.description || 'Description', font, 10);
+            drawText(act.name || 'Activity', boldFont, 13);
+            drawText(act.description || 'Description', font, 13);
             yPosition -= entrySpacing;
           });
           drawSeparatorLine();
@@ -659,8 +659,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.education.length > 0) {
           drawText('Education', boldFont, 14, true);
           data.education.forEach(edu => {
-            drawText(`${edu.course || 'Course'} - ${edu.college || 'College'}${edu.gradYear ? ', ' + edu.gradYear : ''}`, boldFont, 10);
-            drawText(edu.marks || 'Marks', font, 10);
+            drawText(`${edu.course || 'Course'} - ${edu.college || 'College'}${edu.gradYear ? ', ' + edu.gradYear : ''}`, boldFont, 13);
+            drawText(edu.marks || 'Marks', font, 13);
             yPosition -= entrySpacing;
           });
           drawSeparatorLine();
@@ -670,7 +670,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.certificates.length > 0) {
           drawText('Certificates', boldFont, 14, true);
           data.certificates.forEach(cert => {
-            drawText(`${cert.title || 'Certificate'} - ${cert.date || 'Date'} (${cert.link || 'Link'})`, font, 10);
+            drawText(`${cert.title || 'Certificate'} - ${cert.date || 'Date'} (${cert.link || 'Link'})`, font, 13);
             yPosition -= entrySpacing;
           });
           drawSeparatorLine();
@@ -680,9 +680,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.projects.length > 0) {
           drawText('Personal Projects', boldFont, 14, true);
           data.projects.forEach(proj => {
-            drawText(proj.name || 'Project', boldFont, 10);
-            if (proj.url) drawText(proj.url, font, 10);
-            drawText(proj.description || 'Description', font, 10);
+            drawText(proj.name || 'Project', boldFont, 13);
+            if (proj.url) drawText(proj.url, font, 13);
+            drawText(proj.description || 'Description', font, 13);
             yPosition -= entrySpacing;
           });
           drawSeparatorLine();
@@ -690,7 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Hobbies and Interests
         drawText('Hobbies and Interests', boldFont, 14, true);
-        drawText(data.hobbies, font, 10);
+        drawText(data.hobbies, font, 13);
 
         // Save and download PDF
         const pdfBytes = await pdfDoc.save();
