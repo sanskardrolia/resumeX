@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('input', updatePreview);
     form.addEventListener('change', updatePreview);
 
-    // Word count
+    // Word count for Professional Summary
     professionalSummary.addEventListener('input', () => {
       const words = professionalSummary.value.trim().split(/\s+/).filter(word => word.length > 0);
       wordCountDisplay.textContent = `${words.length}/30 words`;
@@ -211,12 +211,31 @@ document.addEventListener('DOMContentLoaded', () => {
       eduDiv.innerHTML = `
         <input type="text" placeholder="Course and Branch" class="w-full p-2 border rounded mb-2 course bg-gray-50 text-gray-900 border-gray-300 transition-colors">
         <input type="text" placeholder="College Name" class="w-full p-2 border rounded mb-2 college bg-gray-50 text-gray-900 border-gray-300 transition-colors">
-        <input type="text" placeholder="CGPA/Percentage" class="w-full p-2 border rounded marks bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+        <input type="text" placeholder="CGPA/Percentage" class="w-full p-2 border rounded mb-2 marks bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+        <input type="number" placeholder="Graduation Year" class="w-full p-2 border rounded mb-2 grad-year bg-gray-50 text-gray-900 border-gray-300 transition-colors" min="1900" max="2030">
         <button type="button" class="text-red-600 mt-2 remove-edu hover:text-red-700 transition-colors">Remove</button>
       `;
       document.getElementById('education').appendChild(eduDiv);
       eduDiv.querySelector('.remove-edu').addEventListener('click', () => {
         eduDiv.remove();
+        updatePreview();
+      });
+      updatePreview();
+    });
+
+    // Add certificate
+    document.getElementById('add-cert').addEventListener('click', () => {
+      const certDiv = document.createElement('div');
+      certDiv.className = 'cert-entry mb-2';
+      certDiv.innerHTML = `
+        <input type="text" placeholder="Certificate Title" class="w-full p-2 border rounded mb-2 cert-title bg-gray-50 text-gray-900 border-gray-300 transition-colors" required>
+        <input type="month" placeholder="Date" class="w-full p-2 border rounded mb-2 cert-date bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+        <input type="url" placeholder="Certificate Link" class="w-full p-2 border rounded mb-2 cert-link bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+        <button type="button" class="text-red-600 mt-2 remove-cert hover:text-red-700 transition-colors">Remove</button>
+      `;
+      document.getElementById('certificates').appendChild(certDiv);
+      certDiv.querySelector('.remove-cert').addEventListener('click', () => {
+        certDiv.remove();
         updatePreview();
       });
       updatePreview();
@@ -245,10 +264,11 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('work-experience').innerHTML = '';
       document.getElementById('extracurricular').innerHTML = '';
       document.getElementById('education').innerHTML = '';
+      document.getElementById('certificates').innerHTML = '';
       document.getElementById('projects').innerHTML = '';
 
       document.getElementById('name').value = 'John Doe';
-      document.getElementById('profile-summary').value = 'Results-driven software engineer with expertise in web development and a passion for building scalable applications.';
+      document.getElementById('profile-summary').value = 'Software Engineer skilled in JavaScript and Python';
       document.getElementById('location').value = 'San Francisco, CA';
       document.getElementById('mobile').value = '(123) 456-7890';
       document.getElementById('linkedin').value = 'https://linkedin.com/in/johndoe';
@@ -257,7 +277,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('hard-skills').value = 'JavaScript, Python, React, Node.js';
       document.getElementById('tools').value = 'Git, Docker, AWS, VS Code';
       document.getElementById('additional-skills').value = 'Agile Methodology, Problem Solving, Team Leadership';
+      document.getElementById('hobbies').value = 'Reading, Hiking, Coding';
 
+      // Sample Work Experience
       const workDiv1 = document.createElement('div');
       workDiv1.className = 'work-entry mb-2';
       workDiv1.innerHTML = `
@@ -292,6 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePreview();
       });
 
+      // Sample Extracurricular Activity
       const extraDiv = document.createElement('div');
       extraDiv.className = 'extra-entry mb-2';
       extraDiv.innerHTML = `
@@ -305,12 +328,14 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePreview();
       });
 
+      // Sample Education
       const eduDiv = document.createElement('div');
       eduDiv.className = 'edu-entry mb-2';
       eduDiv.innerHTML = `
         <input type="text" placeholder="Course and Branch" class="w-full p-2 border rounded mb-2 course bg-gray-50 text-gray-900 border-gray-300 transition-colors" value="B.S. Computer Science">
         <input type="text" placeholder="College Name" class="w-full p-2 border rounded mb-2 college bg-gray-50 text-gray-900 border-gray-300 transition-colors" value="University of California">
-        <input type="text" placeholder="CGPA/Percentage" class="w-full p-2 border rounded marks bg-gray-50 text-gray-900 border-gray-300 transition-colors" value="3.8/4.0">
+        <input type="text" placeholder="CGPA/Percentage" class="w-full p-2 border rounded mb-2 marks bg-gray-50 text-gray-900 border-gray-300 transition-colors" value="3.8/4.0">
+        <input type="number" placeholder="Graduation Year" class="w-full p-2 border rounded mb-2 grad-year bg-gray-50 text-gray-900 border-gray-300 transition-colors" value="2023">
         <button type="button" class="text-red-600 mt-2 remove-edu hover:text-red-700 transition-colors">Remove</button>
       `;
       document.getElementById('education').appendChild(eduDiv);
@@ -319,6 +344,36 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePreview();
       });
 
+      // Sample Certificates
+      const certDiv1 = document.createElement('div');
+      certDiv1.className = 'cert-entry mb-2';
+      certDiv1.innerHTML = `
+        <input type="text" placeholder="Certificate Title" class="w-full p-2 border rounded mb-2 cert-title bg-gray-50 text-gray-900 border-gray-300 transition-colors" value="AWS Certified Developer" required>
+        <input type="month" placeholder="Date" class="w-full p-2 border rounded mb-2 cert-date bg-gray-50 text-gray-900 border-gray-300 transition-colors" value="2023-06">
+        <input type="url" placeholder="Certificate Link" class="w-full p-2 border rounded mb-2 cert-link bg-gray-50 text-gray-900 border-gray-300 transition-colors" value="https://aws.amazon.com/certification">
+        <button type="button" class="text-red-600 mt-2 remove-cert hover:text-red-700 transition-colors">Remove</button>
+      `;
+      document.getElementById('certificates').appendChild(certDiv1);
+      certDiv1.querySelector('.remove-cert').addEventListener('click', () => {
+        certDiv1.remove();
+        updatePreview();
+      });
+
+      const certDiv2 = document.createElement('div');
+      certDiv2.className = 'cert-entry mb-2';
+      certDiv2.innerHTML = `
+        <input type="text" placeholder="Certificate Title" class="w-full p-2 border rounded mb-2 cert-title bg-gray-50 text-gray-900 border-gray-300 transition-colors" value="Google UX Design Certificate" required>
+        <input type="month" placeholder="Date" class="w-full p-2 border rounded mb-2 cert-date bg-gray-50 text-gray-900 border-gray-300 transition-colors" value="2022-09">
+        <input type="url" placeholder="Certificate Link" class="w-full p-2 border rounded mb-2 cert-link bg-gray-50 text-gray-900 border-gray-300 transition-colors" value="https://coursera.org">
+        <button type="button" class="text-red-600 mt-2 remove-cert hover:text-red-700 transition-colors">Remove</button>
+      `;
+      document.getElementById('certificates').appendChild(certDiv2);
+      certDiv2.querySelector('.remove-cert').addEventListener('click', () => {
+        certDiv2.remove();
+        updatePreview();
+      });
+
+      // Sample Project
       const projectDiv = document.createElement('div');
       projectDiv.className = 'project-entry mb-2';
       projectDiv.innerHTML = `
@@ -333,8 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePreview();
       });
 
-      document.getElementById('hobbies').value = 'Reading, Hiking, Coding';
-
+      // Update word count
       const words = professionalSummary.value.trim().split(/\s+/).filter(word => word.length > 0);
       wordCountDisplay.textContent = `${words.length}/30 words`;
       if (words.length > 30) {
@@ -345,6 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
       updatePreview();
     });
 
+    // Update resume preview
     function updatePreview() {
       const data = {
         name: document.getElementById('name').value,
@@ -354,9 +409,9 @@ document.addEventListener('DOMContentLoaded', () => {
         linkedin: document.getElementById('linkedin').value,
         portfolio: document.getElementById('portfolio').value,
         professionalSummary: document.getElementById('professional-summary').value,
-        hardSkills: document.getElementById('hard-skills').value.split(',').map(s => s.trim()),
-        tools: document.getElementById('tools').value.split(',').map(s => s.trim()),
-        additionalSkills: document.getElementById('additional-skills').value.split(',').map(s => s.trim()),
+        hardSkills: document.getElementById('hard-skills').value.split(',').map(s => s.trim()).filter(s => s),
+        tools: document.getElementById('tools').value.split(',').map(s => s.trim()).filter(s => s),
+        additionalSkills: document.getElementById('additional-skills').value.split(',').map(s => s.trim()).filter(s => s),
         workExperience: Array.from(document.querySelectorAll('.work-entry')).map(entry => ({
           company: entry.querySelector('.company-name').value,
           designation: entry.querySelector('.designation').value,
@@ -371,14 +426,20 @@ document.addEventListener('DOMContentLoaded', () => {
         education: Array.from(document.querySelectorAll('.edu-entry')).map(entry => ({
           course: entry.querySelector('.course').value,
           college: entry.querySelector('.college').value,
-          marks: entry.querySelector('.marks').value
+          marks: entry.querySelector('.marks').value,
+          gradYear: entry.querySelector('.grad-year').value
+        })),
+        certificates: Array.from(document.querySelectorAll('.cert-entry')).map(entry => ({
+          title: entry.querySelector('.cert-title').value,
+          date: entry.querySelector('.cert-date').value,
+          link: entry.querySelector('.cert-link').value
         })),
         projects: Array.from(document.querySelectorAll('.project-entry')).map(entry => ({
           name: entry.querySelector('.project-name').value,
           url: entry.querySelector('.project-url').value,
           description: entry.querySelector('.description').value
         })),
-        hobbies: document.getElementById('hobbies').value.split(',').map(s => s.trim())
+        hobbies: document.getElementById('hobbies').value.split(',').map(s => s.trim()).filter(s => s)
       };
 
       preview.innerHTML = `
@@ -386,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p class="text-sm">${data.location || 'Location'} | ${data.mobile || 'Mobile'} | 
           <a href="${data.linkedin || '#'}" class="text-blue-600">${data.linkedin || 'LinkedIn'}</a> | 
           <a href="${data.portfolio || '#'}" class="text-blue-600">${data.portfolio || 'Portfolio'}</a></p>
-        <p class="mt-2 text-sm">${data.profileSummary || 'Profile Summary'}</p>
+        <p class="mt-2 text-sm">${data.profileSummary || 'Major Skill (e.g., Software Engineer)'}</p>
         <h2 class="text-xl font-semibold mt-4">Professional Summary</h2>
         <p class="text-sm">${data.professionalSummary || 'Your professional summary'}</p>
         <h2 class="text-xl font-semibold mt-4">Skills</h2>
@@ -413,8 +474,14 @@ document.addEventListener('DOMContentLoaded', () => {
         <h2 class="text-xl font-semibold mt-4">Education</h2>
         ${data.education.map(edu => `
           <div class="mb-2">
-            <p class="text-sm"><strong>${edu.course || 'Course'}</strong> - ${edu.college || 'College'}</p>
+            <p class="text-sm"><strong>${edu.course || 'Course'}</strong> - ${edu.college || 'College'}${edu.gradYear ? ', ' + edu.gradYear : ''}</p>
             <p class="text-sm">${edu.marks || 'Marks'}</p>
+          </div>
+        `).join('')}
+        <h2 class="text-xl font-semibold mt-4">Certificates</h2>
+        ${data.certificates.map(cert => `
+          <div class="mb-2">
+            <p class="text-sm">${cert.title || 'Certificate'} - ${cert.date || 'Date'} (<a href="${cert.link || '#'}" class="text-blue-600">${cert.link || 'Link'}</a>)</p>
           </div>
         `).join('')}
         <h2 class="text-xl font-semibold mt-4">Personal Projects</h2>
@@ -429,11 +496,12 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }
 
+    // Download PDF
     downloadBtn.addEventListener('click', async () => {
       try {
         const { PDFDocument, StandardFonts, rgb } = PDFLib;
         const pdfDoc = await PDFDocument.create();
-        let page = pdfDoc.addPage([595, 842]);
+        let page = pdfDoc.addPage([595, 842]); // A4 size in points
         const { width, height } = page.getSize();
         const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
         const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
@@ -498,108 +566,144 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const data = {
           name: document.getElementById('name').value || 'Your Name',
-          contact: `${document.getElementById('location').value || 'Location'} | ${document.getElementById('mobile').value || 'Mobile'} | ${document.getElementById('linkedin').value || 'LinkedIn'} | ${document.getElementById('portfolio').value || 'Portfolio'}`,
-          profileSummary: document.getElementById('profile-summary').value || 'Profile Summary',
+          contact: [
+            document.getElementById('location').value || 'Location',
+            document.getElementById('mobile').value || 'Mobile',
+            document.getElementById('linkedin').value || 'LinkedIn',
+            document.getElementById('portfolio').value || 'Portfolio'
+          ].filter(Boolean).join(' | '),
+          profileSummary: document.getElementById('profile-summary').value || 'Major Skill (e.g., Software Engineer)',
           professionalSummary: document.getElementById('professional-summary').value || 'Your professional summary',
-          hardSkills: `Hard Skills: ${document.getElementById('hard-skills').value.split(',').map(s => s.trim()).join(', ') || 'None'}`,
-          tools: `Tools: ${document.getElementById('tools').value.split(',').map(s => s.trim()).join(', ') || 'None'}`,
-          additionalSkills: `Additional Skills: ${document.getElementById('additional-skills').value.split(',').map(s => s.trim()).join(', ') || 'None'}`,
-          workExperience: Array.from(document.querySelectorAll('.work-entry')).map(entry => {
-            const company = entry.querySelector('.company-name').value || 'Company';
-            const designation = entry.querySelector('.designation').value || 'Designation';
-            const startDate = entry.querySelector('.start-date').value || 'Start';
-            const endDate = entry.querySelector('.present').checked ? 'Present' : entry.querySelector('.end-date').value || 'End';
-            const contributions = entry.querySelector('.contributions').value || 'Contributions';
-            return { company, designation, period: `${startDate} - ${endDate}`, contributions };
-          }),
-          extracurricular: Array.from(document.querySelectorAll('.extra-entry')).map(entry => {
-            const name = entry.querySelector('.activity-name').value || 'Activity';
-            const description = entry.querySelector('.description').value || 'Description';
-            return `${name}\n${description}`;
-          }),
-          education: Array.from(document.querySelectorAll('.edu-entry')).map(entry => {
-            const course = entry.querySelector('.course').value || 'Course';
-            const college = entry.querySelector('.college').value || 'College';
-            const marks = entry.querySelector('.marks').value || 'Marks';
-            return `${course} - ${college}\n${marks}`;
-          }),
-          projects: Array.from(document.querySelectorAll('.project-entry')).map(entry => {
-            const name = entry.querySelector('.project-name').value || 'Project';
-            const url = entry.querySelector('.project-url').value || 'URL';
-            const description = entry.querySelector('.description').value || 'Description';
-            return `${name} (${url})\n${description}`;
-          }),
-          hobbies: document.getElementById('hobbies').value.split(',').map(s => s.trim()).join(' | ') || 'None'
+          hardSkills: `Hard Skills: ${document.getElementById('hard-skills').value.split(',').map(s => s.trim()).filter(s => s).join(', ') || 'None'}`,
+          tools: `Tools: ${document.getElementById('tools').value.split(',').map(s => s.trim()).filter(s => s).join(', ') || 'None'}`,
+          additionalSkills: `Additional Skills: ${document.getElementById('additional-skills').value.split(',').map(s => s.trim()).filter(s => s).join(', ') || 'None'}`,
+          workExperience: Array.from(document.querySelectorAll('.work-entry')).map(entry => ({
+            company: entry.querySelector('.company-name').value,
+            designation: entry.querySelector('.designation').value,
+            startDate: entry.querySelector('.start-date').value,
+            endDate: entry.querySelector('.present').checked ? 'Present' : entry.querySelector('.end-date').value,
+            contributions: entry.querySelector('.contributions').value
+          })).filter(exp => exp.company || exp.designation || exp.startDate || exp.endDate || exp.contributions),
+          extracurricular: Array.from(document.querySelectorAll('.extra-entry')).map(entry => ({
+            name: entry.querySelector('.activity-name').value,
+            description: entry.querySelector('.description').value
+          })).filter(act => act.name || act.description),
+          education: Array.from(document.querySelectorAll('.edu-entry')).map(entry => ({
+            course: entry.querySelector('.course').value,
+            college: entry.querySelector('.college').value,
+            marks: entry.querySelector('.marks').value,
+            gradYear: entry.querySelector('.grad-year').value
+          })).filter(edu => edu.course || edu.college || edu.marks || edu.gradYear),
+          certificates: Array.from(document.querySelectorAll('.cert-entry')).map(entry => ({
+            title: entry.querySelector('.cert-title').value,
+            date: entry.querySelector('.cert-date').value,
+            link: entry.querySelector('.cert-link').value
+          })).filter(cert => cert.title),
+          projects: Array.from(document.querySelectorAll('.project-entry')).map(entry => ({
+            name: entry.querySelector('.project-name').value,
+            url: entry.querySelector('.project-url').value,
+            description: entry.querySelector('.description').value
+          })).filter(proj => proj.name || proj.url || proj.description),
+          hobbies: document.getElementById('hobbies').value.split(',').map(s => s.trim()).filter(s => s).join(' | ') || 'None'
         };
 
-        drawText(data.name, font, 20.8, true);
-        drawText(data.contact, font, 13);
-        drawText(data.profileSummary, font, 13);
-        drawSeparatorLine();
-        drawText('Professional Summary', font, 15.6, true);
-        drawText(data.professionalSummary, font, 13);
-        drawSeparatorLine();
-        drawText('Skills', font, 15.6, true);
-        drawText(data.hardSkills, font, 13);
-        drawText(data.tools, font, 13);
-        drawText(data.additionalSkills, font, 13);
-        drawSeparatorLine();
-        drawText('Work Experience', font, 15.6, true);
-        data.workExperience.forEach((exp, index) => {
-          drawText(`${exp.company} - ${exp.designation}`, boldFont, 13, true, margin, rgb(0, 0, 0));
-          drawText(exp.period, font, 13);
-          drawText(exp.contributions, font, 13);
-          if (index < data.workExperience.length - 1) {
-            checkPageOverflow(entrySpacing);
-            yPosition -= entrySpacing;
-          }
-        });
-        drawSeparatorLine();
-        drawText('Extracurricular Activities', font, 15.6, true);
-        data.extracurricular.forEach((act, index) => {
-          drawText(act, font, 13);
-          if (index < data.extracurricular.length - 1) {
-            checkPageOverflow(entrySpacing);
-            yPosition -= entrySpacing;
-          }
-        });
-        drawSeparatorLine();
-        drawText('Education', font, 15.6, true);
-        data.education.forEach((edu, index) => {
-          drawText(edu, font, 13);
-          if (index < data.education.length - 1) {
-            checkPageOverflow(entrySpacing);
-            yPosition -= entrySpacing;
-          }
-        });
-        drawSeparatorLine();
-        drawText('Personal Projects', font, 15.6, true);
-        data.projects.forEach((proj, index) => {
-          drawText(proj, font, 13);
-          if (index < data.projects.length - 1) {
-            checkPageOverflow(entrySpacing);
-            yPosition -= entrySpacing;
-          }
-        });
-        drawSeparatorLine();
-        drawText('Hobbies and Interests', font, 15.6, true);
-        drawText(data.hobbies, font, 13);
+        // Name
+        drawText(data.name, boldFont, 18, true);
+
+        // Contact
+        drawText(data.contact, font, 10);
+        yPosition -= 4 * fontScale;
+
+        // Profile Summary
+        drawText(data.profileSummary, font, 10);
         drawSeparatorLine();
 
+        // Professional Summary
+        drawText('Professional Summary', boldFont, 14, true);
+        drawText(data.professionalSummary, font, 10);
+        yPosition -= entrySpacing;
+        drawSeparatorLine();
+
+        // Skills
+        drawText('Skills', boldFont, 14, true);
+        drawText(data.hardSkills, font, 10);
+        drawText(data.tools, font, 10);
+        drawText(data.additionalSkills, font, 10);
+        yPosition -= entrySpacing;
+        drawSeparatorLine();
+
+        // Work Experience
+        if (data.workExperience.length > 0) {
+          drawText('Work Experience', boldFont, 14, true);
+          data.workExperience.forEach(exp => {
+            drawText(`${exp.company || 'Company'} - ${exp.designation || 'Designation'}`, boldFont, 10);
+            drawText(`${exp.startDate || 'Start'} - ${exp.endDate || 'End'}`, font, 10);
+            drawText(exp.contributions || 'Contributions', font, 10);
+            yPosition -= entrySpacing;
+          });
+          drawSeparatorLine();
+        }
+
+        // Extracurricular Activities
+        if (data.extracurricular.length > 0) {
+          drawText('Extracurricular Activities', boldFont, 14, true);
+          data.extracurricular.forEach(act => {
+            drawText(act.name || 'Activity', boldFont, 10);
+            drawText(act.description || 'Description', font, 10);
+            yPosition -= entrySpacing;
+          });
+          drawSeparatorLine();
+        }
+
+        // Education
+        if (data.education.length > 0) {
+          drawText('Education', boldFont, 14, true);
+          data.education.forEach(edu => {
+            drawText(`${edu.course || 'Course'} - ${edu.college || 'College'}${edu.gradYear ? ', ' + edu.gradYear : ''}`, boldFont, 10);
+            drawText(edu.marks || 'Marks', font, 10);
+            yPosition -= entrySpacing;
+          });
+          drawSeparatorLine();
+        }
+
+        // Certificates
+        if (data.certificates.length > 0) {
+          drawText('Certificates', boldFont, 14, true);
+          data.certificates.forEach(cert => {
+            drawText(`${cert.title || 'Certificate'} - ${cert.date || 'Date'} (${cert.link || 'Link'})`, font, 10);
+            yPosition -= entrySpacing;
+          });
+          drawSeparatorLine();
+        }
+
+        // Personal Projects
+        if (data.projects.length > 0) {
+          drawText('Personal Projects', boldFont, 14, true);
+          data.projects.forEach(proj => {
+            drawText(proj.name || 'Project', boldFont, 10);
+            if (proj.url) drawText(proj.url, font, 10);
+            drawText(proj.description || 'Description', font, 10);
+            yPosition -= entrySpacing;
+          });
+          drawSeparatorLine();
+        }
+
+        // Hobbies and Interests
+        drawText('Hobbies and Interests', boldFont, 14, true);
+        drawText(data.hobbies, font, 10);
+
+        // Save and download PDF
         const pdfBytes = await pdfDoc.save();
         const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
-        link.href = url;
-        link.download = 'resume.pdf';
+        link.href = URL.createObjectURL(blob);
+        link.download = `${data.name || 'resume'}.pdf`;
         link.click();
-        URL.revokeObjectURL(url);
+        URL.revokeObjectURL(link.href);
       } catch (error) {
         console.error('Error generating PDF:', error);
         alert('Failed to generate PDF. Please try again.');
       }
     });
-
-    updatePreview();
   }
 });

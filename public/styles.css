@@ -490,7 +490,8 @@ body.builder[data-theme="dark"] #fill-sample:hover {
 body.builder #add-work, 
 body.builder #add-extra, 
 body.builder #add-edu, 
-body.builder #add-project {
+body.builder #add-project,
+body.builder #add-cert {
   background-color: #16a34a;
   color: #ffffff;
 }
@@ -498,21 +499,24 @@ body.builder #add-project {
 body.builder[data-theme="dark"] #add-work, 
 body.builder[data-theme="dark"] #add-extra, 
 body.builder[data-theme="dark"] #add-edu, 
-body.builder[data-theme="dark"] #add-project {
+body.builder[data-theme="dark"] #add-project,
+body.builder[data-theme="dark"] #add-cert {
   background-color: #22c55e;
 }
 
 body.builder #add-work:hover, 
 body.builder #add-extra:hover, 
 body.builder #add-edu:hover, 
-body.builder #add-project:hover {
+body.builder #add-project:hover,
+body.builder #add-cert:hover {
   background-color: #15803d;
 }
 
 body.builder[data-theme="dark"] #add-work:hover, 
 body.builder[data-theme="dark"] #add-extra:hover, 
 body.builder[data-theme="dark"] #add-edu:hover, 
-body.builder[data-theme="dark"] #add-project:hover {
+body.builder[data-theme="dark"] #add-project:hover,
+body.builder[data-theme="dark"] #add-cert:hover {
   background-color: #16a34a;
 }
 
@@ -612,28 +616,32 @@ body.builder[data-theme="dark"] label {
 body.builder .remove-work, 
 body.builder .remove-extra, 
 body.builder .remove-edu, 
-body.builder .remove-project {
+body.builder .remove-project,
+body.builder .remove-cert {
   color: #dc2626;
 }
 
 body.builder[data-theme="dark"] .remove-work, 
 body.builder[data-theme="dark"] .remove-extra, 
 body.builder[data-theme="dark"] .remove-edu, 
-body.builder[data-theme="dark"] .remove-project {
+body.builder[data-theme="dark"] .remove-project,
+body.builder[data-theme="dark"] .remove-cert {
   color: #f87171;
 }
 
 body.builder .remove-work:hover, 
 body.builder .remove-extra:hover, 
 body.builder .remove-edu:hover, 
-body.builder .remove-project:hover {
+body.builder .remove-project:hover,
+body.builder .remove-cert:hover {
   color: #b91c1c;
 }
 
 body.builder[data-theme="dark"] .remove-work:hover, 
 body.builder[data-theme="dark"] .remove-extra:hover, 
 body.builder[data-theme="dark"] .remove-edu:hover, 
-body.builder[data-theme="dark"] .remove-project:hover {
+body.builder[data-theme="dark"] .remove-project:hover,
+body.builder[data-theme="dark"] .remove-cert:hover {
   color: #ef4444;
 }
 

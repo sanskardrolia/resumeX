@@ -61,7 +61,7 @@
         <div class="mb-4">
           <h3 class="text-lg font-semibold text-gray-900">Personal Details</h3>
           <input type="text" id="name" placeholder="Full Name" class="w-full p-2 border rounded mb-2 bg-gray-50 text-gray-900 border-gray-300 transition-colors" required>
-          <textarea id="profile-summary" placeholder="Profile Summary" class="w-full p-2 border rounded mb-2 bg-gray-50 text-gray-900 border-gray-300 transition-colors" rows="4" maxlength="200"></textarea>
+          <input type="text" id="profile-summary" placeholder="Major Skill (e.g., Software Engineer specializing in full-stack)" class="w-full p-2 border rounded mb-2 bg-gray-50 text-gray-900 border-gray-300 transition-colors" maxlength="100">
           <input type="text" id="location" placeholder="Location" class="w-full p-2 border rounded mb-2 bg-gray-50 text-gray-900 border-gray-300 transition-colors">
           <input type="tel" id="mobile" placeholder="Mobile Number" class="w-full p-2 border rounded mb-2 bg-gray-50 text-gray-900 border-gray-300 transition-colors">
           <input type="url" id="linkedin" placeholder="LinkedIn URL" class="w-full p-2 border rounded mb-2 bg-gray-50 text-gray-900 border-gray-300 transition-colors">
@@ -71,7 +71,7 @@
         <div class="mb-4">
           <h3 class="text-lg font-semibold text-gray-900">Professional Summary (Max 30 Words)</h3>
           <textarea id="professional-summary" placeholder="Professional Summary" class="w-full p-2 border rounded bg-gray-50 text-gray-900 border-gray-300 transition-colors" rows="3" maxlength="150"></textarea>
-          <p This Builder is in Beta - Use Laptop for Better Experience p id="word-count" class="text-sm text-gray-600">0/30 words</p>
+          <p id="word-count" class="text-sm text-gray-600">0/30 words</p>
         </div>
         <!-- Skills -->
         <div class="mb-4">
@@ -113,10 +113,23 @@
             <div class="edu-entry mb-2">
               <input type="text" placeholder="Course and Branch" class="w-full p-2 border rounded mb-2 course bg-gray-50 text-gray-900 border-gray-300 transition-colors">
               <input type="text" placeholder="College Name" class="w-full p-2 border rounded mb-2 college bg-gray-50 text-gray-900 border-gray-300 transition-colors">
-              <input type="text" placeholder="CGPA/Percentage" class="w-full p-2 border rounded marks bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+              <input type="text" placeholder="CGPA/Percentage" class="w-full p-2 border rounded mb-2 marks bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+              <input type="number" placeholder="Graduation Year" class="w-full p-2 border rounded mb-2 grad-year bg-gray-50 text-gray-900 border-gray-300 transition-colors" min="1900" max="2030">
             </div>
           </div>
           <button type="button" id="add-edu" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors">Add Education</button>
+        </div>
+        <!-- Certificates -->
+        <div class="mb-4">
+          <h3 class="text-lg font-semibold text-gray-900">Certificates</h3>
+          <div id="certificates">
+            <div class="cert-entry mb-2">
+              <input type="text" placeholder="Certificate Title" class="w-full p-2 border rounded mb-2 cert-title bg-gray-50 text-gray-900 border-gray-300 transition-colors" required>
+              <input type="month" placeholder="Date" class="w-full p-2 border rounded mb-2 cert-date bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+              <input type="url" placeholder="Certificate Link" class="w-full p-2 border rounded mb-2 cert-link bg-gray-50 text-gray-900 border-gray-300 transition-colors">
+            </div>
+          </div>
+          <button type="button" id="add-cert" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors">Add Certificate</button>
         </div>
         <!-- Personal Projects -->
         <div class="mb-4">
