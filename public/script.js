@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Shared functionality for both pages
   const toggleThemeBtn = document.getElementById('toggle-theme');
-  const toggleThemeBtnBottom = document.getElementById('toggle-theme-bottom');
   const shareButton = document.getElementById('share-button');
-  const shareButtonBottom = document.getElementById('share-button-bottom');
   const shareToast = document.getElementById('share-toast');
   const shareToastClose = document.getElementById('share-toast-close');
   const body = document.body;
@@ -12,10 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('theme') || 'light';
   body.setAttribute('data-theme', savedTheme);
   if (toggleThemeBtn) {
-    toggleThemeBtn.textContent = savedTheme === 'light' ? 'Dark Mode' : 'Light Mode';
-  }
-  if (toggleThemeBtnBottom) {
-    toggleThemeBtnBottom.textContent = savedTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+    toggleThemeBtn.innerHTML = savedTheme === 'light' ? '☾' : '☼';
+    toggleThemeBtn.setAttribute('title', savedTheme === 'light' ? 'Dark Mode' : 'Light Mode');
   }
 
   // Theme toggle
@@ -25,18 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
     body.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     if (toggleThemeBtn) {
-      toggleThemeBtn.textContent = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
-    }
-    if (toggleThemeBtnBottom) {
-      toggleThemeBtnBottom.textContent = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+      toggleThemeBtn.innerHTML = newTheme === 'light' ? '☾' : '☼';
+      toggleThemeBtn.setAttribute('title', newTheme === 'light' ? 'Dark Mode' : 'Light Mode');
     }
   };
 
   if (toggleThemeBtn) {
     toggleThemeBtn.addEventListener('click', toggleTheme);
-  }
-  if (toggleThemeBtnBottom) {
-    toggleThemeBtnBottom.addEventListener('click', toggleTheme);
   }
 
   // Reusable toast display function
@@ -101,9 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (shareButton) {
     shareButton.addEventListener('click', handleShare);
-  }
-  if (shareButtonBottom) {
-    shareButtonBottom.addEventListener('click', handleShare);
   }
 
   // Homepage-specific logic
