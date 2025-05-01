@@ -23,12 +23,17 @@
     <div class="nav-container">
       <h1 class="nav-logo">Fresher Resume Builder</h1>
       <div class="nav-buttons">
-        <a href="/builder" class="nav-button">Start Building</a>
         <button id="share-button" class="nav-button">Share</button>
         <button id="toggle-theme" class="nav-button">Dark Mode</button>
       </div>
     </div>
   </nav>
+
+  <!-- Sticky Bottom Navigation (Mobile) -->
+  <div class="bottom-nav">
+    <button id="share-button-bottom" class="nav-button">Share</button>
+    <button id="toggle-theme-bottom" class="nav-button">Dark Mode</button>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -63,6 +68,14 @@
           <h3>PDF Export</h3>
           <p>Download your resume as a professional PDF with multi-page support.</p>
         </div>
+        <div class="feature-item highlight">
+          <h3>No Sign-Up Required</h3>
+          <p>Start building your resume instantly without creating an account.</p>
+        </div>
+        <div class="feature-item highlight">
+          <h3>No Data Saved</h3>
+          <p>Your data stays private; nothing is stored on our servers.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -70,14 +83,15 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
-      <p>© 2025 Fresher Resume Builder.</p>
-      <p>Created by <a href="https://www.linkedin.com/in/sanskardrolia/" target="_blank">Sanskar Drolia</a></p>
+      <p>© 2025 Fresher Resume Builder. All rights reserved.</p>
+      <p>Created by Sanskar Drolia</p>
     </div>
   </footer>
 
   <!-- Share Toast -->
   <div id="share-toast" class="hidden fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg z-20 opacity-0 transition-opacity duration-500">
-    Link copied to clipboard!
+    <span>Link copied to clipboard!</span>
+    <button id="share-toast-close" class="toast-close">×</button>
   </div>
 
   <script src="script.js"></script>

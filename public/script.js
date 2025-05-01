@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Shared functionality for both pages
   const toggleThemeBtn = document.getElementById('toggle-theme');
+  const toggleThemeBtnBottom = document.getElementById('toggle-theme-bottom');
   const shareButton = document.getElementById('share-button');
+  const shareButtonBottom = document.getElementById('share-button-bottom');
   const shareToast = document.getElementById('share-toast');
+  const shareToastClose = document.getElementById('share-toast-close');
   const body = document.body;
 
   // Theme initialization
@@ -11,16 +14,29 @@ document.addEventListener('DOMContentLoaded', () => {
   if (toggleThemeBtn) {
     toggleThemeBtn.textContent = savedTheme === 'light' ? 'Dark Mode' : 'Light Mode';
   }
+  if (toggleThemeBtnBottom) {
+    toggleThemeBtnBottom.textContent = savedTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+  }
 
   // Theme toggle
-  if (toggleThemeBtn) {
-    toggleThemeBtn.addEventListener('click', () => {
-      const currentTheme = body.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
+  const toggleTheme = () => {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    body.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    if (toggleThemeBtn) {
       toggleThemeBtn.textContent = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
-    });
+    }
+    if (toggleThemeBtnBottom) {
+      toggleThemeBtnBottom.textContent = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+    }
+  };
+
+  if (toggleThemeBtn) {
+    toggleThemeBtn.addEventListener('click', toggleTheme);
+  }
+  if (toggleThemeBtnBottom) {
+    toggleThemeBtnBottom.addEventListener('click', toggleTheme);
   }
 
   // Reusable toast display function
@@ -32,49 +48,68 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       toastElement.classList.remove('hidden');
       toastElement.classList.add('show');
-      setTimeout(() => {
+      let timeout = setTimeout(() => {
         toastElement.classList.remove('show');
         setTimeout(() => {
           toastElement.classList.add('hidden');
         }, 500); // Match CSS transition duration
       }, duration);
+
+      // Handle close button
+      const closeButton = toastElement.querySelector('.toast-close');
+      if (closeButton) {
+        const closeHandler = () => {
+          clearTimeout(timeout);
+          toastElement.classList.remove('show');
+          setTimeout(() => {
+            toastElement.classList.add('hidden');
+          }, 500);
+          closeButton.removeEventListener('click', closeHandler);
+        };
+        closeButton.addEventListener('click', closeHandler);
+      }
     } catch (error) {
       console.error('Error displaying toast:', error);
     }
   };
 
   // Share functionality
-  if (shareButton && shareToast) {
-    shareButton.addEventListener('click', async () => {
-      const shareData = {
-        title: 'Fresher Resume Builder',
-        text: 'Build ATS-friendly resumes for freshers for FREE',
-        url: 'https://fresher-resume.vercel.app'
-      };
+  const handleShare = async () => {
+    const shareData = {
+      title: 'Fresher Resume Builder',
+      text: 'Build ATS-friendly resumes for freshers for FREE',
+      url: 'https://fresher-resume.vercel.app'
+    };
 
-      try {
-        if (navigator.share) {
-          await navigator.share(shareData);
-        } else {
-          // Fallback: Copy to clipboard
-          const shareText = `${shareData.text}: ${shareData.url}`;
-          await navigator.clipboard.writeText(shareText);
-          showToast(shareToast, 3000);
-        }
-      } catch (error) {
-        console.error('Error sharing:', error);
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
         // Fallback: Copy to clipboard
         const shareText = `${shareData.text}: ${shareData.url}`;
         await navigator.clipboard.writeText(shareText);
         showToast(shareToast, 3000);
       }
-    });
+    } catch (error) {
+      console.error('Error sharing:', error);
+      // Fallback: Copy to clipboard
+      const shareText = `${shareData.text}: ${shareData.url}`;
+      await navigator.clipboard.writeText(shareText);
+      showToast(shareToast, 3000);
+    }
+  };
+
+  if (shareButton) {
+    shareButton.addEventListener('click', handleShare);
+  }
+  if (shareButtonBottom) {
+    shareButtonBottom.addEventListener('click', handleShare);
   }
 
   // Homepage-specific logic
   if (window.location.pathname === '/') {
     // Add smooth scroll for homepage CTA buttons
-    const ctaButtons = document.querySelectorAll('.hero-cta, .nav-button[href="/builder"]');
+    const ctaButtons = document.querySelectorAll('.hero-cta');
     ctaButtons.forEach(button => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
@@ -86,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Resume Builder-specific logic
   if (window.location.pathname === '/builder') {
     const toast = document.getElementById('toast');
+    const toastClose = document.getElementById('toast-close');
     const form = document.getElementById('resume-form');
     const preview = document.getElementById('resume-preview');
     const downloadBtn = document.getElementById('download-pdf');
