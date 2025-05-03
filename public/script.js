@@ -513,7 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const separatorLineThickness = 0.5;
         const separatorLineColor = rgb(0.5, 0.5, 0.5);
 
-        const fontScales = { small: 0.8, medium: 1.0, large: 1.2 };
+        const fontScales = { small: 0.8, medium: 1.0, large: 1.2 }; 
         const fontScale = fontScales[fontSize];
         const lineHeight = baseLineHeight * fontScale;
 
@@ -608,7 +608,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Name
-        drawText(data.name, boldFont, 18, true);
+        drawText(data.name, boldFont, 20, true);
 
         // Contact
         drawText(data.contact, font, 13);
